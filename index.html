@@ -1,14 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LOTR</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
     
+    <dialog id="dialog-update-character">
+      <h2>Update Character</h2>
+      <form id="form-update-character">
+        
+        <label for="characterName"></label>
+        <input type="text" name="characterName">
+
+        <label for="race"></label>
+        <input type="text" name="race">
+        
+        <label for="image"></label>
+        <input type="url" name="image">
+        
+        <label for="age"></label>
+        <input type="number" name="age">
+        
+        <label for="birth"></label>
+        <input type="text" name="birth">
+        
+        <label for="culture"></label>
+        <input type="number" name="culture">
+        
+        <label for="death"></label>
+        <input type="text" name="death">
+
+        <label for="gender"></label>
+        <input type="text" name="gender">
+
+        <label for="language"></label>
+        <input type="text" name="language">
+        
+        <label for="magical"></label>
+        <input type="text" name="magical">
+       
+        <label for="realm"></label>
+        <input type="text" name="realm">
+       
+        <label for="title"></label>
+        <input type="text" name="title">
+        
+        <label for="weapon"></label>
+        <input type="text" name="weapon">
+
+        <button class="btn-cancel">Close</button>
+        <button>Update</button>
+      </form>
+    </dialog>
+
+    <!-- 
+
+et til update når man klikker på update her vises data så du kan ændre i den
+
+
+et til når du trykker på update inden i modal at den spørger om du er sikker på du vil update?
+
+en form til vores info der skal tastes
+-->
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
