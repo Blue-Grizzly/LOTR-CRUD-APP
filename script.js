@@ -75,6 +75,8 @@ function updateCharacterClicked(event) {
   const weapon = form.weapon.value;
   //gets the id of the post
   const id = form.getAttribute("data-id");
+
+  //puts in data from from passes it to updateCharacter
   updateCharacter(
     id,
     characterName,
@@ -94,7 +96,7 @@ function updateCharacterClicked(event) {
   document.querySelector("#dialog-update-character").close();
 }
 
-//  Update an existing post - HTTP Method: PUT
+//  Update an existing character
 async function updateCharacter(
   id,
   characterName,
@@ -111,7 +113,7 @@ async function updateCharacter(
   title,
   weapon
 ) {
-  // post update to update
+  // Character object we update
   const characterToUpdate = {
     characterName,
     race,
