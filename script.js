@@ -154,16 +154,4 @@ async function updateCharacter(
   }
 }
 
-/*
 
-
-
-
-eventlistener på update knappen
-
-
-update funktion
-
-
-
-*/
