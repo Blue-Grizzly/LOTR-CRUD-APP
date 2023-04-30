@@ -8,11 +8,19 @@ function initApp() {
     .querySelector("#form-update-character .btn-cancel")
     .addEventListener("click", cancelUpdate);
 
+    document
+      .querySelector("#dialog-failed-to-update .btn-cancel")
+      .addEventListener("click", closeUpdateFailedDialog);
+
   document
     .querySelector("#form-update-character")
     .addEventListener("submit", updateCharacterClicked);
 }
 
+function closeUpdateFailedDialog(){
+    console.log("close failed to update clicked");
+    document.querySelector("#dialog-failed-to-update").close();
+}
 function cancelUpdate() {
   console.log("cancel btn clicked");
   document.querySelector("#dialog-update-character").close();
@@ -140,6 +148,9 @@ async function updateCharacter(
   if (response.ok) {
     console.log("Post succesfully updated in Firebase 🔥");
     updateCharactersGrid();
+  }
+  else{
+    document.querySelector("#dialog-failed-to-update").showModal();
   }
 }
 
