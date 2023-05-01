@@ -3,19 +3,33 @@
 const endpoint =
   "https://lotr-crud-default-rtdb.europe-west1.firebasedatabase.app/";
 
+let characters;
+
+window.addEventListener("load", initApp);
+
 function initApp() {
-  document
-    .querySelector("#form-update-character .btn-cancel")
-    .addEventListener("click", cancelUpdate);
+updateCharactersGrid();
+document.querySelector("#btn-create-character").addEventListener("click", showCreateCharacterDialog);
+document.querySelector("#form-create-character").addEventListener("submit", createCharacterClicked);
 
-    document
-      .querySelector("#dialog-failed-to-update .btn-cancel")
-      .addEventListener("click", closeUpdateFailedDialog);
+document
+.querySelector("#form-update-character .btn-cancel")
+.addEventListener("click", cancelUpdate);
 
-  document
-    .querySelector("#form-update-character")
-    .addEventListener("submit", updateCharacterClicked);
+document
+  .querySelector("#dialog-failed-to-update .btn-cancel")
+  .addEventListener("click", closeUpdateFailedDialog);
+
+document
+.querySelector("#form-update-character")
+.addEventListener("submit", updateCharacterClicked);
+
+document.querySelector("#sortbyselect").addEventListener("change", event => showCharacters(sortByOption(event.target.value)));
+document.querySelector("#input-search").addEventListener("keyup", event => showCharacters(searchByName(event.target.value)));
+document.querySelector("#input-search").addEventListener("search", event => showCharacters(searchByName(event.target.value)));
+document.querySelector("#filterby").addEventListener("change", event => showCharacters(filterByRace(event.target.value)));
 }
+
 
 function closeUpdateFailedDialog(){
     console.log("close failed to update clicked");
@@ -202,22 +216,6 @@ dialog.close();
 }
 
 
-
-
-
-
-
-
-
-
-window.addEventListener("load", initApp);
-
-function initApp() {
-updateCharactersGrid();
-document.querySelector("#btn-create-character").addEventListener("click", showCreateCharacterDialog);
-document.querySelector("#form-create-character").addEventListener("submit", createCharacterClicked);
-}
-
 function showCreateCharacterDialog() {
   document.querySelector("#dialog-create-character").showModal();
   console.log("Create New Character clicked!");
@@ -320,14 +318,6 @@ function prepareData(dataObject) {
   }
   console.log(characterArray);
   return characterArray;
-}
-
-function initApp(){
-
-    document.querySelector("#sortbyselect").addEventListener("change", event => showCharacters(sortByOption(event.target.value)));
-    document.querySelector("#input-search").addEventListener("keyup", event => showCharacters(searchByName(event.target.value)));
-    document.querySelector("#input-search").addEventListener("search", event => showCharacters(searchByName(event.target.value)));
-    document.querySelector("#filterby").addEventListener("change", event => showCharacters(filterByRace(event.target.value)));
 }
 
 
