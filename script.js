@@ -4,14 +4,10 @@ const endpoint = "https://lotr-crud-default-rtdb.europe-west1.firebasedatabase.a
 
 function initApp(){
 
-    document.querySelector("#sortbyselect").addEventListener("change", event=>
-        showCharacters(sortByOption(event.target.value)));
-    document.querySelector("#input-search").addEventListener("keyup", event=> 
-        showCharacters(searchByName(event.target.value)));
-    document.querySelector("#input-search").addEventListener("search", event=> 
-        showCharacters(searchByName(event.target.value)));
-    document.querySelector("#filterby").addEventListener("change", event=>
-        showCharacters(filterByRace(event.target.value)));
+    document.querySelector("#sortbyselect").addEventListener("change", event => showCharacters(sortByOption(event.target.value)));
+    document.querySelector("#input-search").addEventListener("keyup", event => showCharacters(searchByName(event.target.value)));
+    document.querySelector("#input-search").addEventListener("search", event => showCharacters(searchByName(event.target.value)));
+    document.querySelector("#filterby").addEventListener("change", event => showCharacters(filterByRace(event.target.value)));
 }
 
 
@@ -30,13 +26,13 @@ function searchByName(searchValue){
 
 function sortByOption(sortValue) {
     if(sortValue === "name"){
-        return characters.sort(character1.name.localeCompare(character2.name));
+        return characters.sort((a, b) => a.name.localeCompare(b.name));
     } else if (sortValue === "age"){
-        return characters.sort(()=>character1.age - character2.age);
+        return characters.sort((a, b) => a.age - b.age);
     } else if (sortValue === "title"){
-        return characters.sort(()=> character1.title.localeCompare(character2.title));
+        return characters.sort((a, b) => a.title.localeCompare(b.title));
     } else if (sortValue === "race"){
-        return characters.sort(()=>character1.race.localeCompare(character2.race));
+        return characters.sort((a, b) => a.race.localeCompare(b.race));
     }
 }
 
@@ -44,5 +40,5 @@ function sortByOption(sortValue) {
 function filterByRace(inputValue){
     inputValue = inputValue.toLowerCase();
     
-    return characters.filter(()=>haracter.race.toLowerCase().includes(inputValue));
+    return characters.filter(character=>character.race.toLowerCase().includes(inputValue));
 }
