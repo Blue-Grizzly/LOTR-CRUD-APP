@@ -79,44 +79,10 @@ function filterByRaceChange(event){
 function filterByRace(inputValue){
     inputValue = inputValue.toLowerCase();
     
-    if (inputValue === "elf"){
-        return characters.filter(filterElf);
-    } else if (inputValue === "men"){
-        return characters.filter(filterMen);
-    } else if (inputValue === "dwarf"){
-        return characters.filter(filterDwarf);
-    } else if (inputValue === "orc"){
-        return characters.filter(filterOrc);
-    } else if (inputValue === "ainur"){
-        return characters.filter(filterAinur);
-    } else if (inputValue === "hobbit"){
-        return characters.filter(filterHobbit);
-    }
-
-
-    function filterElf(character){
-        return character.race.toLowerCase().includes(searchValue);
-    }    
+    return characters.filter(matchRace);
     
-    function filterMen(character){
-        return character.race.toLowerCase().includes(searchValue);
-    }    
-    
-    function filterDwarf(character){
-        return character.race.toLowerCase().includes(searchValue);
-    }    
-    
-    function filterOrc(character){
-        return character.race.toLowerCase().includes(searchValue);
-    }    
-    
-    function filterAinur(character){
-        return character.race.toLowerCase().includes(searchValue);
-    }    
-    
-    function filterHobbit(character){
-        return character.race.toLowerCase().includes(searchValue);
-
-    }
+    function matchRace(character){
+        return character.race.toLowerCase().includes(inputValue);
+        }
 
 }
