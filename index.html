@@ -8,6 +8,24 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+
+                <!-- dialog - delete post -->
+ <dialog id="dialog-delete-post">
+        <h2>Do you want to delete a character?</h2>
+        <p id="dialog-delete-post-title">Name of the Character</p>
+        <form method="dialog" id="form-delete-post">
+        <button type="button" class="btn-cancel">No</button>
+        <button>Yes</button>
+        </form>
+    </dialog>
+
+   <dialog id="dialog-delete-feedback">
+
+  <p id="dialog-delete-feedback-message">Character is deleted</p>
+
+  </dialog>
+
+
     <dialog id="dialog-update-character">
       <h2>Update Character</h2>
       <form id="form-update-character">
