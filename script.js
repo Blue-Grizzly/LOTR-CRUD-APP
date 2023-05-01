@@ -6,76 +6,76 @@ const endpoint = "https://lotr-crud-default-rtdb.europe-west1.firebasedatabase.a
 window.addEventListener("load", initApp);
 
 function initApp() {
-updatePostsGrid();
-document.querySelector("#btn-create-post").addEventListener("click", showCreatePostDialog);
-document.querySelector("#form-create-post").addEventListener("submit", createPostClicked);
+updateCharactersGrid();
+document.querySelector("#btn-create-character").addEventListener("click", showCreateCharacterDialog);
+document.querySelector("#form-create-character").addEventListener("submit", createCharacterClicked);
 }
 
-function showCreatePostDialog() {
-  document.querySelector("#dialog-create-post").showModal();
-  console.log("Create New Post clicked!");
+function showCreateCharacterDialog() {
+  document.querySelector("#dialog-create-character").showModal();
+  console.log("Create New Character clicked!");
 }
 
-function createPostClicked(event) {
+function createCharacterClicked(event) {
   event.preventDefault();
   const form = event.target;
   const title = form.title.value;
   const body = form.body.value;
   const image = form.image.value;
-  createPost(title, body, image);
+  createCharacter(title, body, image);
   form.reset();
-  document.querySelector("#dialog-create-post").close();
+  document.querySelector("#dialog-create-character").close();
 }
 
-async function updatePostsGrid() {
-  const postList = await getPosts();
-  showPosts(postList);
+async function updateCharactersGrid() {
+  const characterList = await getCharacters();
+  showCharacters(characterList);
 }
 
-async function getPosts(url) {
+async function getCharacters(url) {
   const response = await fetch(url);
   const data = await response.json();
   return prepareData(data);
 }
 
-function showPosts(listOfPosts) {
-  document.querySelector("#posts").innerHTML = "";
+function showCharacters(listOfCharacters) {
+  document.querySelector("#characters").innerHTML = "";
 
-  for (const post of listOfPosts) {
-    showPost(post);
+  for (const character of listOfCharacters) {
+    showCharacter(character);
   }
 }
 
-function showPost(postObject) {
+function showCharacter(characterObject) {
   const html = /*html*/ `
         <article class="grid-item">
-            <img src="${postObject.image}" />
-            <h3>${postObject.age}</h3>
-            <p>${postObject.birth}</p>
-            <p>${postObject.culture}</p>
-            <p>${postObject.death}</p>
-            <p>${postObject.gender}</p>
-            <p>${postObject.language}</p>
-            <p>${postObject.magical}</p>
-            <p>${postObject.lotrName}</p>
-            <p>${postObject.race}</p>
-            <p>${postObject.realm}</p>
-            <p>${postObject.title}</p>
-            <p>${postObject.weapon}</p>
+            <img src="${characterObject.image}" />
+            <h3>${characterObject.age}</h3>
+            <p>${characterObject.birth}</p>
+            <p>${characterObject.culture}</p>
+            <p>${characterObject.death}</p>
+            <p>${characterObject.gender}</p>
+            <p>${characterObject.language}</p>
+            <p>${characterObject.magical}</p>
+            <p>${characterObject.lotrName}</p>
+            <p>${characterObject.race}</p>
+            <p>${characterObject.realm}</p>
+            <p>${characterObject.title}</p>
+            <p>${characterObject.weapon}</p>
             <div class="btns">
                 <button class="btn-delete">Delete</button>
                 <button class="btn-update">Update</button>
             </div>
         </article>
     `;
-  document.querySelector("#posts").insertAdjacentHTML("beforeend", html);
+  document.querySelector("#character").insertAdjacentHTML("beforeend", html);
 
-  document.querySelector("#posts article:last-child .btn-delete").addEventListener("click", deleteClicked);
-  document.querySelector("#posts article:last-child .btn-update").addEventListener("click", updateClicked);
+  document.querySelector("#character article:last-child .btn-delete").addEventListener("click", deleteClicked);
+  document.querySelector("#character article:last-child .btn-update").addEventListener("click", updateClicked);
 }
 
-async function createPost(age, birth, culture, death, gender, language, magical, lotrName, race, realm, title, weapon, image) {
-  const newPost = {
+async function createCharacter(age, birth, culture, death, gender, language, magical, lotrName, race, realm, title, weapon, image) {
+  const newCharacter = {
     age: age,
     birth: birth,
     culture: culture,
@@ -92,24 +92,24 @@ async function createPost(age, birth, culture, death, gender, language, magical,
   };
   console.log(newPost);
   const json = JSON.stringify(newPost);
-  const response = await fetch(`${endpoint}/posts.json`, {
+  const response = await fetch(`${endpoint}/characters.json`, {
     method: "POST",
     body: json,
   });
   if (response.ok) {
-    console.log("New post succesfully added to Firebase 🔥");
+    console.log("New character succesfully added to Firebase 🔥");
     updatePostsGrid();
   }
 }
 
 function prepareData(dataObject) {
-  const postArray = [];
+  const characterArray = [];
   for (const key in dataObject) {
-    const post = dataObject[key];
-    post.id = key;
+    const character = dataObject[key];
+    character.id = key;
     console.log(post);
-    postArray.push(post);
+    characterArray.push(character);
   }
-  console.log(postArray);
-  return postArray;
+  console.log(characterArray);
+  return characterArray;
 }
