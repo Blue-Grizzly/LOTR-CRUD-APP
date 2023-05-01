@@ -4,85 +4,45 @@ const endpoint = "https://lotr-crud-default-rtdb.europe-west1.firebasedatabase.a
 
 function initApp(){
 
-    document.querySelector("#sortbyselect").addEventListener("change", sortInputChange);
-    document.querySelector("#input-search").addEventListener("keyup", searchInputChange);
-    document.querySelector("#input-search").addEventListener("search", searchInputChange);
-    document.querySelector("#filterby").addEventListener("change", filterByRaceChange);
+    document.querySelector("#sortbyselect").addEventListener("change", event=>
+        showCharacters(sortByOption(event.target.value)));
+    document.querySelector("#input-search").addEventListener("keyup", event=> 
+        showCharacters(searchByName(event.target.value)));
+    document.querySelector("#input-search").addEventListener("search", event=> 
+        showCharacters(searchByName(event.target.value)));
+    document.querySelector("#filterby").addEventListener("change", event=>
+        showCharacters(filterByRace(event.target.value)));
 }
 
 
-function searchInputChange(event){
-    const value = event.target.value;
-    const searchResults = searchByName(value);
-    showCharacters(searchResults);
-
-}
 
 function searchByName(searchValue){
     searchValue = searchValue.toLowerCase().trim();
 
-    const results = characters.filter(checkNames);
+    return characters.filter(checkNames);
 
     function checkNames(character){
         return character.name.toLowerCase().includes(searchValue);
     }
     
-    return results
 }
-
-function sortInputChange(event){
-    const value = event.target.value;
-    const sortResult = sortByOption(value);
-    showCharacters(sortResult);
-
-}
-
 
 
 function sortByOption(sortValue) {
     if(sortValue === "name"){
-        return characters.sort(compareName);
+        return characters.sort(character1.name.localeCompare(character2.name));
     } else if (sortValue === "age"){
-        return characters.sort(compareAge);
+        return characters.sort(()=>character1.age - character2.age);
     } else if (sortValue === "title"){
-        return characters.sort(compareTitle);
+        return characters.sort(()=> character1.title.localeCompare(character2.title));
     } else if (sortValue === "race"){
-        return characters.sort(compareRace);
+        return characters.sort(()=>character1.race.localeCompare(character2.race));
     }
-
-    function compareName(character1, character2){
-        return character1.name.localeCompare(character2.name);
-    }
-    
-    function compareAge(character1, character2){
-        return character1.age - character2.age;
-    }
-    
-    function compareTitle(character1, character2){
-        return character1.title.localeCompare(character2.title);
-    }
-
-    function compareRace(character1, character2){
-        return character1.race.localeCompare(character2.race);
-    }
-
 }
 
-
-
-function filterByRaceChange(event){
-    const value = event.target.value;
-    const searchResults = filterByRace(value);
-    showCharacters(searchResults);
-}
 
 function filterByRace(inputValue){
     inputValue = inputValue.toLowerCase();
     
-    return characters.filter(matchRace);
-    
-    function matchRace(character){
-        return character.race.toLowerCase().includes(inputValue);
-        }
-
+    return characters.filter(()=>haracter.race.toLowerCase().includes(inputValue));
 }
