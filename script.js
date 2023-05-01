@@ -19,13 +19,12 @@ function searchInputChange(event){
 }
 
 function searchByName(searchValue){
-    searchValue = searchValue.toLowerCase();
+    searchValue = searchValue.toLowerCase().trim();
 
     const results = characters.filter(checkNames);
 
-    function checkNames(post){
-        const name = post.title.toLowerCase();
-        return name.includes(searchValue);
+    function checkNames(character){
+        return character.name.toLowerCase().includes(searchValue);
     }
     
     return results
@@ -47,6 +46,8 @@ function sortByOption(sortValue) {
         return characters.sort(compareAge);
     } else if (sortValue === "title"){
         return characters.sort(compareTitle);
+    } else if (sortValue === "race"){
+        return characters.sort(compareRace);
     }
 
     function compareName(character1, character2){
@@ -60,6 +61,11 @@ function sortByOption(sortValue) {
     function compareTitle(character1, character2){
         return character1.title.localeCompare(character2.title);
     }
+
+    function compareRace(character1, character2){
+        return character1.race.localeCompare(character2.race);
+    }
+
 }
 
 
@@ -89,39 +95,28 @@ function filterByRace(inputValue){
 
 
     function filterElf(character){
-        console.log("elf");
-        const race = character.race.toLowerCase();
-        return race.includes(searchValue);
+        return character.race.toLowerCase().includes(searchValue);
     }    
     
     function filterMen(character){
-        console.log("men");
-        const race = character.race.toLowerCase();
-        return race.includes(searchValue);
+        return character.race.toLowerCase().includes(searchValue);
     }    
     
     function filterDwarf(character){
-        console.log("dwarf");
-        const race = character.race.toLowerCase();
-        return race.includes(searchValue);
+        return character.race.toLowerCase().includes(searchValue);
     }    
     
     function filterOrc(character){
-        console.log("orc");
-        const race = character.race.toLowerCase();
-        return race.includes(searchValue);
+        return character.race.toLowerCase().includes(searchValue);
     }    
     
     function filterAinur(character){
-        console.log("ainur");
-        const race = character.race.toLowerCase();
-        return race.includes(searchValue);
+        return character.race.toLowerCase().includes(searchValue);
     }    
     
     function filterHobbit(character){
-        console.log("hobbit");
-        const race = character.race.toLowerCase();
-        return race.includes(searchValue);
+        return character.race.toLowerCase().includes(searchValue);
+
     }
 
 }
