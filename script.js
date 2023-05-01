@@ -8,7 +8,7 @@ const endpoint = "https://lotr-crud-default-rtdb.europe-west1.firebasedatabase.a
 //  så jeg ved at jeg har fjernet noget fra listen.
 
 
-function deletecharacterClicked() {
+function deletecharacterClicked(event) {
 
 const id = event.target.getAttribute("data-id");
 deleteCharacter(id);
@@ -42,7 +42,6 @@ dialog.close();
 }
 
 }
-
 
 
 
