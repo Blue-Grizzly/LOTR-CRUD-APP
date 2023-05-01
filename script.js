@@ -309,6 +309,7 @@ async function createCharacter(age, birth, culture, death, gender, language, mag
   }
 }
 
+
 function prepareData(dataObject) {
   const characterArray = [];
   for (const key in dataObject) {
@@ -319,4 +320,45 @@ function prepareData(dataObject) {
   }
   console.log(characterArray);
   return characterArray;
+}
+
+function initApp(){
+
+    document.querySelector("#sortbyselect").addEventListener("change", event => showCharacters(sortByOption(event.target.value)));
+    document.querySelector("#input-search").addEventListener("keyup", event => showCharacters(searchByName(event.target.value)));
+    document.querySelector("#input-search").addEventListener("search", event => showCharacters(searchByName(event.target.value)));
+    document.querySelector("#filterby").addEventListener("change", event => showCharacters(filterByRace(event.target.value)));
+}
+
+
+
+function searchByName(searchValue){
+    searchValue = searchValue.toLowerCase().trim();
+
+    return characters.filter(checkNames);
+
+    function checkNames(character){
+        return character.name.toLowerCase().includes(searchValue);
+    }
+    
+}
+
+
+function sortByOption(sortValue) {
+    if(sortValue === "name"){
+        return characters.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortValue === "age"){
+        return characters.sort((a, b) => a.age - b.age);
+    } else if (sortValue === "title"){
+        return characters.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortValue === "race"){
+        return characters.sort((a, b) => a.race.localeCompare(b.race));
+    }
+}
+
+
+function filterByRace(inputValue){
+    inputValue = inputValue.toLowerCase();
+    
+    return characters.filter(character=>character.race.toLowerCase().includes(inputValue));
 }
