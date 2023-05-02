@@ -263,7 +263,6 @@ function createCharacterClicked(event) {
 }
 
 async function updateCharactersGrid() {
-  document.querySelector("#characters").innerHTML = "";
   characterList = await getCharacters();
   showCharacters(characterList);
 }
@@ -274,10 +273,10 @@ async function getCharacters() {
   return prepareData(data);
 }
 
-function showCharacters(listOfCharacters) {
+function showCharacters(characterList) {
   document.querySelector("#characters").innerHTML = "";
 
-  for (const character of listOfCharacters) {
+  for (const character of characterList) {
     showCharacter(character);
   }
 }
@@ -390,7 +389,10 @@ function sortByOption(sortValue) {
 
 function filterByRace(inputValue) {
   inputValue = inputValue.toLowerCase();
+  if(inputValue !== "filterall"){
   return characterList.filter((character) =>
     character.race.toLowerCase().includes(inputValue)
-  );
+  );} else{
+    updateCharactersGrid();
+  }
 }
