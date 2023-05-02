@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LOTR</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LOTR</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="#" type="image/x-icon">
+</head>
   <body>
   <main>
-      <section class="grid-layout">
+    <section class="grid-layout">
       <section class="grid-search" id="search">
         <form id="searchbyname">
-            <input type="search" id="input-search" placeholder="Search by name">
+          <input type="search" id="input-search" placeholder="Search by name">
         </form>
         <button id="btn-create-character">Create character</button>
       </section>
 
       <section id="sort" class="grid-sort-filter">
-          <legend for="sortby">Sort by:</legend>
-          <form id="sortby" name="sortby">
-              <select name="sortbyselect" id="sortbyselect">
-                  <option value="name">Name</option>
-                  <option value="age">Age</option>
-                  <option value="title">Title</option>
-                  <option value="race">Race</option>
-
-              </select>
-          </form>
+        <legend for="sortby">Sort by:</legend>
+        <form id="sortby" name="sortby">
+          <select name="sortbyselect" id="sortbyselect">
+            <option value="name">Name</option>
+            <option value="age">Age</option>
+            <option value="title">Title</option>
+            <option value="race">Race</option>
+          </select>
+        </form>
       </section>
 
       <section id="filter">
-          <legend for="filterby">Filter by</legend>
-          <form id="filterby" name="filterby">
-              <label for="filterbyelf">Elves</label>
-              <input type="radio" name="filterby" id="filterbyelf" value="elf">
-              <label for="filterbymen">Men</label>
-              <input type="radio" name="filterby" id="filterbymen" value="men">
-              <label for="filterbyorc">Orcs</label>
-              <input type="radio" name="filterby" id="filterbyorc" value="orc">
-              <label for="filterbyhobbit">Hobbits</label>
-              <input type="radio" name="filterby" id="filterbyhobbit" value="hobbit">
-              <label for="filterbydwarf">Dwarves</label>
-              <input type="radio" name="filterby" id="filterbydwarf" value="dwarf">
-              <label for="filterbyainur">Ainur</label>
-              <input type="radio" name="filterby" id="filterbyainur" value="ainur">
-          </form>
+        <legend for="filterby">Filter by</legend>
+        <form id="filterby" name="filterby">
+          <label for="filterbyelf">Elves</label>
+          <input type="radio" name="filterby" id="filterbyelf" value="elf">
+          <label for="filterbymen">Men</label>
+          <input type="radio" name="filterby" id="filterbymen" value="men">
+          <label for="filterbyorc">Orcs</label>
+          <input type="radio" name="filterby" id="filterbyorc" value="orc">
+          <label for="filterbyhobbit">Hobbits</label>
+          <input type="radio" name="filterby" id="filterbyhobbit" value="hobbit">
+          <label for="filterbydwarf">Dwarves</label>
+          <input type="radio" name="filterby" id="filterbydwarf" value="dwarf">
+          <label for="filterbyainur">Ainur</label>
+          <input type="radio" name="filterby" id="filterbyainur" value="ainur">
+        </form>
       </section>
-          
+
       <section class="grid-characters">
         <h2>Characters</h2>
         <section id="characters" class="grid-container">
@@ -104,9 +104,8 @@
     </form>
 </dialog>
 
-
                 <!-- dialog - delete post -->
- <dialog id="dialog-delete-post">
+  <dialog id="dialog-delete-post">
         <h2>Do you want to delete a character?</h2>
         <p id="dialog-delete-post-title">Name of the Character</p>
         <form method="dialog" id="form-delete-post">
@@ -115,14 +114,11 @@
         </form>
     </dialog>
 
-   <dialog id="dialog-delete-feedback">
-
-  <p id="dialog-delete-feedback-message">Character is deleted</p>
-
+  <dialog id="dialog-delete-feedback">
+    <p id="dialog-delete-feedback-message">Character is deleted</p>
   </dialog>
 
-
-    <dialog id="dialog-update-character">
+  <dialog id="dialog-update-character">
       <h2>Update Character</h2>
       <form id="form-update-character" method="dialog">
         <label for="characterName">Name</label>
@@ -174,8 +170,6 @@
       <button class="btn-cancel">Close</button>
     </dialog>
 
-
-    
     <script src="script.js"></script>
   </body>
 </html>
