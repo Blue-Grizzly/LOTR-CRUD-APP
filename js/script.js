@@ -1,7 +1,5 @@
-"use strict";
+import { getCharacters, createCharacter, updateCharacter, deleteCharacter } from "./rest-service.js";
 
-const endpoint =
-  "https://lotr-crud-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let characterList;
 
@@ -99,7 +97,7 @@ function updateClicked(characterObject) {
 }
 // }
 
-function updateCharacterClicked(event) {
+async function updateCharacterClicked(event) {
   event.preventDefault();
   const form = document.querySelector("#form-update-character");
   // extract the values from inputs in the form
@@ -120,7 +118,9 @@ function updateCharacterClicked(event) {
   const id = form.getAttribute("data-id");
 
   //puts in data from from passes it to updateCharacter
-  updateCharacter(
+  
+  
+  const response = await updateCharacter(
     id,
     name,
     race,
@@ -136,75 +136,22 @@ function updateCharacterClicked(event) {
     title,
     weapon
   ); //match the parameters in updatepost!!!
-  document.querySelector("#dialog-update-character").close();
-}
-
-//  Updates an existing character
-async function updateCharacter(
-  id,
-  name,
-  race,
-  image,
-  age,
-  birth,
-  culture,
-  death,
-  gender,
-  language,
-  magical,
-  realm,
-  title,
-  weapon
-) {
-  // Character object we update
-  const characterToUpdate = {
-    name: name,
-    race: race,
-    image: image,
-    age: age,
-    birth: birth,
-    culture: culture,
-    death: death,
-    gender: gender,
-    language: language,
-    magical: magical,
-    realm: realm,
-    title: title,
-    weapon: weapon,
-  };
-  // Converts the JS object to JSON string
-  const json = JSON.stringify(characterToUpdate);
-  // PUT fetch request with JSON in the body. Calls the specific element in resource
-  const response = await fetch(`${endpoint}/characters/${id}.json`, {
-    method: "PUT",
-    body: json,
-  });
-  // Checks if response is ok - if the response is successful
   if (response.ok) {
-    console.log("Character succesfully updated in Firebase!");
+    document.querySelector("#dialog-update-character").close();
     updateCharactersGrid();
   } else {
     document.querySelector("#dialog-failed-to-update").showModal();
   }
 }
 
+
+
 // 4. Som en administrativ bruger vil jeg gerne kunne slette et {item} så det forsvinder fra databasen.
 
 // 5. Som en daglig bruger vil jeg gerne have tydelig feedback på når jeg sletter et {item},
 //  så jeg ved at jeg har fjernet noget fra listen.
 
-async function deleteCharacter(characterObject) {
-  const id = characterObject.id;
-  const response = await fetch(`${endpoint}/characters/${id}.json`, {
-    method: "DELETE",
-  });
 
-  if (response.ok) {
-    console.log("Character successfully deleted from Firebase!");
-    showDeleteFeedback("Character is deleted!");
-    updateCharactersGrid();
-  }
-}
 
 function showDeleteFeedback(message) {
   const dialog = document.getElementById("dialog-delete-feedback");
@@ -225,7 +172,7 @@ function showCreateCharacterDialog() {
   console.log("Create New Character clicked!");
 }
 
-function createCharacterClicked(event) {
+async function createCharacterClicked(event) {
   event.preventDefault();
   const form = document.querySelector("#form-create-character");
   const name = form.name.value;
@@ -241,7 +188,7 @@ function createCharacterClicked(event) {
   const realm = form.realm.value;
   const title = form.title.value;
   const weapon = form.weapon.value;
-  createCharacter(
+  const response = await createCharacter(
     name,
     race,
     image,
@@ -256,8 +203,13 @@ function createCharacterClicked(event) {
     title,
     weapon
   );
-  form.reset();
-  document.querySelector("#dialog-create-character").close();
+  if (response.ok) {
+    document.querySelector("#dialog-create-character").close();
+    updateCharactersGrid();
+    form.reset();
+  } else {
+    document.querySelector("#dialog-failed-to-update").showModal();
+  }
 }
 
 async function updateCharactersGrid() {
@@ -265,11 +217,6 @@ async function updateCharactersGrid() {
   showCharacters(characterList);
 }
 
-async function getCharacters() {
-  const response = await fetch(`${endpoint}/characters.json`);
-  const data = await response.json();
-  return prepareData(data);
-}
 
 function showCharacters(characterList) {
   document.querySelector("#characters").innerHTML = "";
@@ -305,63 +252,19 @@ function showCharacter(characterObject) {
 
   document
     .querySelector("#characters article:last-child .btn-delete")
-    .addEventListener("click", () => deleteCharacter(characterObject));
+    .addEventListener("click", () => deleteCharacterClicked(characterObject));
   document
     .querySelector("#characters article:last-child .btn-update")
     .addEventListener("click", () => updateClicked(characterObject));
 }
 
-async function createCharacter(
-  name,
-  race,
-  image,
-  age,
-  birth,
-  culture,
-  death,
-  gender,
-  language,
-  magical,
-  realm,
-  title,
-  weapon
-) {
-  const newCharacter = {
-    name: name,
-    race: race,
-    image: image,
-    age: age,
-    birth: birth,
-    culture: culture,
-    death: death,
-    gender: gender,
-    language: language,
-    magical: magical,
-    realm: realm,
-    title: title,
-    weapon: weapon,
-  };
-  console.log(newCharacter);
-  const json = JSON.stringify(newCharacter);
-  const response = await fetch(`${endpoint}/characters.json`, {
-    method: "POST",
-    body: json,
-  });
-  if (response.ok) {
-    console.log("New character succesfully added to Firebase!");
-    updateCharactersGrid();
-  }
-}
-
-function prepareData(dataObject) {
-  const characterArray = [];
-  for (const key in dataObject) {
-    const character = dataObject[key];
-    character.id = key;
-    characterArray.push(character);
-  }
-  console.log(characterArray);
-  return characterArray;
+async function deleteCharacterClicked(characterObject) {
+  const response = await deleteCharacter(characterObject);
+    if (response.ok) {
+      updateCharactersGrid();
+    } else {
+      document.querySelector("#dialog-failed-to-update").showModal();
+    }
 }
 
 function searchByName(searchValue) {
