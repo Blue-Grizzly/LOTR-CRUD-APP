@@ -56,7 +56,7 @@ function closeUpdateFailedDialog() {
 }
 function cancelUpdate(event) {
 event.preventDefault();
-  console.log("Cancel button clicked!");
+  console.log("cancel btn clicked");
   document.querySelector("#dialog-update-character").close();
 }
 
@@ -99,22 +99,22 @@ event.preventDefault();
 // }
 
 function updateCharacterClicked(event) {
-  //event.preventDefault();
+  event.preventDefault();
   const form = document.querySelector("#form-update-character");
   // extract the values from inputs in the form
   const characterName = form.elements.namedItem("characterName").value;
-  const race = form.elements.namedItem("race").value;
-  const image = form.elements.namedItem("image").value;
-  const age = form.elements.namedItem("age").value;
-  const birth = form.elements.namedItem("birth").value;
-  const culture = form.elements.namedItem("culture").value;
-  const death = form.elements.namedItem("death").value;
-  const gender = form.elements.namedItem("gender").value;
-  const language = form.elements.namedItem("language").value;
-  const magical = form.elements.namedItem("magical").value;
-  const realm = form.elements.namedItem("realm").value;
-  const title = form.elements.namedItem("title").value;
-  const weapon = form.elements.namedItem("weapon").value;
+  const race = form.race.value;
+  const image = form.image.value;
+  const age = form.age.value;
+  const birth = form.birth.value;
+  const culture = form.culture.value;
+  const death = form.death.value;
+  const gender = form.gender.value;
+  const language = form.language.value;
+  const magical = form.magical.value;
+  const realm = form.realm.value;
+  const title = form.title.value;
+  const weapon = form.weapon.value;
   //gets the id of the post
   const id = form.getAttribute("data-id");
 
@@ -201,6 +201,7 @@ async function deleteCharacter(id) {
   const response = await fetch(`${endpoint}/characters/${id}.json`, {
     method: "DELETE",
   });
+
   if (response.ok) {
     console.log("Character successfully deleted from Firebase!");
     showDeleteFeedback("Character is deleted!");
@@ -260,9 +261,8 @@ function showCharacters(listOfCharacters) {
 function showCharacter(characterObject) {
   const html = /*html*/ `
         <article class="grid-item">
-            <img src="${characterObject.image}">
-            <h3>${characterObject.name}</h3>
-            <p>${characterObject.age}</p>
+            <img src="${characterObject.image}" />
+            <h3>${characterObject.age}</h3>
             <p>${characterObject.birth}</p>
             <p>${characterObject.culture}</p>
             <p>${characterObject.death}</p>
