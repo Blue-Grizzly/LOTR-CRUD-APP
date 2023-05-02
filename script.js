@@ -50,29 +50,35 @@ function initApp() {
     );
 }
 
+function closeCreateCharacterModal(event) {
+  event.preventDefault();
+  document.querySelector("#dialog-create-character").close();
+}
 function closeUpdateFailedDialog() {
-  console.log("close failed to update clicked");
+  console.log("Close failed to update clicked!");
   document.querySelector("#dialog-failed-to-update").close();
 }
 function cancelUpdate(event) {
 event.preventDefault();
+  console.log("Cancel button clicked!");
+  event.preventDefault();
   console.log("cancel btn clicked");
   document.querySelector("#dialog-update-character").close();
 }
 
 // function showCharacter(characterObject) {
-  // document
-  //   .querySelector("#posts article:last-child .btn-update")
-  //   .addEventListener("click", updateClicked);
+// document
+//   .querySelector("#posts article:last-child .btn-update")
+//   .addEventListener("click", updateClicked);
 
-  // called when update button is clicked
+// called when update button is clicked
 
-  function updateClicked(characterObject) {
-    //saves the form in as a variable so easier to use below
-    const updateForm = document.querySelector("#form-update-character");
+function updateClicked(characterObject) {
+  //saves the form in as a variable so easier to use below
+  const updateForm = document.querySelector("#form-update-character");
 
-    //the following makes info from object be displayed in the ModalWindow to provide
-    //Feedback to the user
+  //the following makes info from object be displayed in the ModalWindow to provide
+  //Feedback to the user
 
     updateForm.name.value = characterObject.name;
     updateForm.race.value = characterObject.race; //sets value of the form title to that of the object.
@@ -88,18 +94,18 @@ event.preventDefault();
     updateForm.title.value = characterObject.title;
     updateForm.weapon.value = characterObject.weapon;
 
-    //sets the id of the form to the id for the specific object
-    updateForm.setAttribute("data-id", characterObject.id);
+  //sets the id of the form to the id for the specific object
+  updateForm.setAttribute("data-id", characterObject.id);
 
-    //shows the update form
-    document.querySelector("#dialog-update-character").showModal();
+  //shows the update form
+  document.querySelector("#dialog-update-character").showModal();
 
-    console.log("Update button clicked");
-  }
+  console.log("Update button clicked");
+}
 // }
 
 function updateCharacterClicked(event) {
-  event.preventDefault();
+  //event.preventDefault();
   const form = document.querySelector("#form-update-character");
   // extract the values from inputs in the form
   const name = form.name.value;
@@ -138,7 +144,7 @@ function updateCharacterClicked(event) {
   document.querySelector("#dialog-update-character").close();
 }
 
-//  Update an existing character
+//  Updates an existing character
 async function updateCharacter(
   id,
   name,
@@ -171,16 +177,16 @@ async function updateCharacter(
     title: title,
     weapon: weapon,
   };
-  // convert the JS object to JSON string
+  // Converts the JS object to JSON string
   const json = JSON.stringify(characterToUpdate);
   // PUT fetch request with JSON in the body. Calls the specific element in resource
   const response = await fetch(`${endpoint}/characters/${id}.json`, {
     method: "PUT",
     body: json,
   });
-  // check if response is ok - if the response is successful
+  // Checks if response is ok - if the response is successful
   if (response.ok) {
-    console.log("Post succesfully updated in Firebase 🔥");
+    console.log("Character succesfully updated in Firebase!");
     updateCharactersGrid();
   } else {
     document.querySelector("#dialog-failed-to-update").showModal();
@@ -201,10 +207,9 @@ async function deleteCharacter(id) {
   const response = await fetch(`${endpoint}/characters/${id}.json`, {
     method: "DELETE",
   });
-
   if (response.ok) {
-    console.log("Character successfully deleted from Firebase");
-    showDeleteFeedback("Character is deleted");
+    console.log("Character successfully deleted from Firebase!");
+    showDeleteFeedback("Character is deleted!");
     updateCharactersGrid();
   }
 }
@@ -325,7 +330,7 @@ async function createCharacter(
     body: json,
   });
   if (response.ok) {
-    console.log("New character succesfully added to Firebase 🔥");
+    console.log("New character succesfully added to Firebase!");
     updateCharactersGrid();
   }
 }
@@ -343,7 +348,6 @@ function prepareData(dataObject) {
 
 function searchByName(searchValue) {
   searchValue = searchValue.toLowerCase().trim();
-
   return characters.filter(checkNames);
 
   function checkNames(character) {
@@ -365,7 +369,6 @@ function sortByOption(sortValue) {
 
 function filterByRace(inputValue) {
   inputValue = inputValue.toLowerCase();
-
   return characters.filter((character) =>
     character.race.toLowerCase().includes(inputValue)
   );
