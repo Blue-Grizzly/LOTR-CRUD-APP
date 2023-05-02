@@ -237,8 +237,8 @@ async function updateCharactersGrid() {
   showCharacters(characterList);
 }
 
-async function getCharacters(url) {
-  const response = await fetch(url);
+async function getCharacters() {
+  const response = await fetch(`${endpoint}/characters.json`);
   const data = await response.json();
   return prepareData(data);
 }
@@ -273,10 +273,11 @@ function showCharacter(characterObject) {
             </div>
         </article>
     `;
-  document.querySelector("#character").insertAdjacentHTML("beforeend", html);
+  document.querySelector("#characters").insertAdjacentHTML("beforeend", html);
 
-  document.querySelector("#character article:last-child .btn-delete").addEventListener("click", deleteClicked);
-  document.querySelector("#character article:last-child .btn-update").addEventListener("click", updateClicked);
+  document.querySelector("#characters article:last-child .btn-delete").addEventListener("click", deleteClicked);
+  document.querySelector("#characters article:last-child .btn-update").addEventListener("click", updateClicked);
+  
 }
 
 async function createCharacter(age, birth, culture, death, gender, language, magical, lotrName, race, realm, title, weapon, image) {
@@ -313,7 +314,6 @@ function prepareData(dataObject) {
   for (const key in dataObject) {
     const character = dataObject[key];
     character.id = key;
-    console.log(post);
     characterArray.push(character);
   }
   console.log(characterArray);
