@@ -8,53 +8,72 @@ let characters;
 window.addEventListener("load", initApp);
 
 function initApp() {
-updateCharactersGrid();
-document.querySelector("#btn-create-character").addEventListener("click", showCreateCharacterDialog);
-document.querySelector("#form-create-character").addEventListener("submit", createCharacterClicked);
+  updateCharactersGrid();
+  document
+    .querySelector("#btn-create-character")
+    .addEventListener("click", showCreateCharacterDialog);
+  document
+    .querySelector("#form-create-character")
+    .addEventListener("submit", createCharacterClicked);
 
-document
-.querySelector("#form-update-character .btn-cancel")
-.addEventListener("click", cancelUpdate);
+  document
+    .querySelector("#form-update-character .btn-cancel")
+    .addEventListener("click", cancelUpdate);
 
-document
-  .querySelector("#dialog-failed-to-update .btn-cancel")
-  .addEventListener("click", closeUpdateFailedDialog);
+  document
+    .querySelector("#dialog-failed-to-update .btn-cancel")
+    .addEventListener("click", closeUpdateFailedDialog);
 
-document
-.querySelector("#form-update-character")
-.addEventListener("submit", updateCharacterClicked);
+  document
+    .querySelector("#form-update-character")
+    .addEventListener("submit", updateCharacterClicked);
 
-document.querySelector("#sortbyselect").addEventListener("change", event => showCharacters(sortByOption(event.target.value)));
-document.querySelector("#input-search").addEventListener("keyup", event => showCharacters(searchByName(event.target.value)));
-document.querySelector("#input-search").addEventListener("search", event => showCharacters(searchByName(event.target.value)));
-document.querySelector("#filterby").addEventListener("change", event => showCharacters(filterByRace(event.target.value)));
+  document
+    .querySelector("#sortbyselect")
+    .addEventListener("change", (event) =>
+      showCharacters(sortByOption(event.target.value))
+    );
+  document
+    .querySelector("#input-search")
+    .addEventListener("keyup", (event) =>
+      showCharacters(searchByName(event.target.value))
+    );
+  document
+    .querySelector("#input-search")
+    .addEventListener("search", (event) =>
+      showCharacters(searchByName(event.target.value))
+    );
+  document
+    .querySelector("#filterby")
+    .addEventListener("change", (event) =>
+      showCharacters(filterByRace(event.target.value))
+    );
 }
 
-
-function closeUpdateFailedDialog(){
-    console.log("close failed to update clicked");
-    document.querySelector("#dialog-failed-to-update").close();
+function closeUpdateFailedDialog() {
+  console.log("close failed to update clicked");
+  document.querySelector("#dialog-failed-to-update").close();
 }
 function cancelUpdate() {
   console.log("cancel btn clicked");
   document.querySelector("#dialog-update-character").close();
 }
 
-function showCharacter(characterObject) {
-  document
-    .querySelector("#posts article:last-child .btn-update")
-    .addEventListener("click", updateClicked);
+// function showCharacter(characterObject) {
+  // document
+  //   .querySelector("#posts article:last-child .btn-update")
+  //   .addEventListener("click", updateClicked);
 
   // called when update button is clicked
 
-  function updateClicked() {
+  function updateClicked(characterObject) {
     //saves the form in as a variable so easier to use below
-    const updateForm = document.querySelector("#form-update-post");
+    const updateForm = document.querySelector("#form-update-character");
 
     //the following makes info from object be displayed in the ModalWindow to provide
     //Feedback to the user
 
-    updateForm.charactername.value = characterObject.charactername;
+    updateForm.characterName.value = characterObject.characterName;
     updateForm.race.value = characterObject.race; //sets value of the form title to that of the object.
     updateForm.image.value = characterObject.image;
     updateForm.age.value = characterObject.age;
@@ -72,11 +91,11 @@ function showCharacter(characterObject) {
     updateForm.setAttribute("data-id", characterObject.id);
 
     //shows the update form
-    document.querySelector("#dialog-update-post").showModal();
+    document.querySelector("#dialog-update-character").showModal();
 
-    // console.log("Update button clicked");
+    console.log("Update button clicked");
   }
-}
+// }
 
 function updateCharacterClicked(event) {
   //event.preventDefault();
@@ -162,31 +181,20 @@ async function updateCharacter(
   if (response.ok) {
     console.log("Post succesfully updated in Firebase 🔥");
     updateCharactersGrid();
-  }
-  else{
+  } else {
     document.querySelector("#dialog-failed-to-update").showModal();
   }
 }
-
-
-
-
-
-
 
 // 4. Som en administrativ bruger vil jeg gerne kunne slette et {item} så det forsvinder fra databasen.
 
 // 5. Som en daglig bruger vil jeg gerne have tydelig feedback på når jeg sletter et {item},
 //  så jeg ved at jeg har fjernet noget fra listen.
 
-
 function deletecharacterClicked(event) {
-
-const id = event.target.getAttribute("data-id");
-deleteCharacter(id);
-
+  const id = event.target.getAttribute("data-id");
+  deleteCharacter(id);
 }
-
 
 async function deleteCharacter(id) {
   const response = await fetch(`${endpoint}/characters/${id}.json`, {
@@ -196,25 +204,23 @@ async function deleteCharacter(id) {
   if (response.ok) {
     console.log("Character successfully deleted from Firebase");
     showDeleteFeedback("Character is deleted");
-    updateCharactersGrid(); 
+    updateCharactersGrid();
   }
 }
 
+function showDeleteFeedback(message) {
+  const dialog = document.getElementById("dialog-delete-feedback");
+  const dialogMessage = document.getElementById(
+    "dialog-delete-feedback-message"
+  );
+  dialogMessage.textContent = message;
+  dialog.showModal();
+  setTimeout(closeDialog, 3000);
 
-function showDeleteFeedback(message){
-
-const dialog = document.getElementById("dialog-delete-feedback");
-const dialogMessage = document.getElementById("dialog-delete-feedback-message");
-dialogMessage.textContent = message;
-dialog.showModal();
-setTimeout(closeDialog, 3000);
-
-function closeDialog(){
-dialog.close();
+  function closeDialog() {
+    dialog.close();
+  }
 }
-
-}
-
 
 function showCreateCharacterDialog() {
   document.querySelector("#dialog-create-character").showModal();
@@ -275,12 +281,29 @@ function showCharacter(characterObject) {
     `;
   document.querySelector("#characters").insertAdjacentHTML("beforeend", html);
 
-  document.querySelector("#characters article:last-child .btn-delete").addEventListener("click", deletecharacterClicked);
-  document.querySelector("#characters article:last-child .btn-update").addEventListener("click", updateCharacterClicked);
-
+  document
+    .querySelector("#characters article:last-child .btn-delete")
+    .addEventListener("click", deletecharacterClicked);
+  document
+    .querySelector("#characters article:last-child .btn-update")
+    .addEventListener("click", () => updateClicked(characterObject));
 }
 
-async function createCharacter(age, birth, culture, death, gender, language, magical, lotrName, race, realm, title, weapon, image) {
+async function createCharacter(
+  age,
+  birth,
+  culture,
+  death,
+  gender,
+  language,
+  magical,
+  lotrName,
+  race,
+  realm,
+  title,
+  weapon,
+  image
+) {
   const newCharacter = {
     age: age,
     birth: birth,
@@ -296,18 +319,17 @@ async function createCharacter(age, birth, culture, death, gender, language, mag
     weapon: weapon,
     image: image,
   };
-  console.log(newPost);
-  const json = JSON.stringify(newPost);
+  console.log(newCharacter);
+  const json = JSON.stringify(newCharacter);
   const response = await fetch(`${endpoint}/characters.json`, {
     method: "POST",
     body: json,
   });
   if (response.ok) {
     console.log("New character succesfully added to Firebase 🔥");
-    updatePostsGrid();
+    updateCharactersGrid();
   }
 }
-
 
 function prepareData(dataObject) {
   const characterArray = [];
@@ -320,35 +342,32 @@ function prepareData(dataObject) {
   return characterArray;
 }
 
+function searchByName(searchValue) {
+  searchValue = searchValue.toLowerCase().trim();
 
+  return characters.filter(checkNames);
 
-function searchByName(searchValue){
-    searchValue = searchValue.toLowerCase().trim();
-
-    return characters.filter(checkNames);
-
-    function checkNames(character){
-        return character.name.toLowerCase().includes(searchValue);
-    }
-    
+  function checkNames(character) {
+    return character.name.toLowerCase().includes(searchValue);
+  }
 }
-
 
 function sortByOption(sortValue) {
-    if(sortValue === "name"){
-        return characters.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (sortValue === "age"){
-        return characters.sort((a, b) => a.age - b.age);
-    } else if (sortValue === "title"){
-        return characters.sort((a, b) => a.title.localeCompare(b.title));
-    } else if (sortValue === "race"){
-        return characters.sort((a, b) => a.race.localeCompare(b.race));
-    }
+  if (sortValue === "name") {
+    return characters.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortValue === "age") {
+    return characters.sort((a, b) => a.age - b.age);
+  } else if (sortValue === "title") {
+    return characters.sort((a, b) => a.title.localeCompare(b.title));
+  } else if (sortValue === "race") {
+    return characters.sort((a, b) => a.race.localeCompare(b.race));
+  }
 }
 
+function filterByRace(inputValue) {
+  inputValue = inputValue.toLowerCase();
 
-function filterByRace(inputValue){
-    inputValue = inputValue.toLowerCase();
-    
-    return characters.filter(character=>character.race.toLowerCase().includes(inputValue));
+  return characters.filter((character) =>
+    character.race.toLowerCase().includes(inputValue)
+  );
 }
