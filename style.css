@@ -17,6 +17,18 @@ p {
   margin-bottom: 1.5rem;
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  padding: 1em;
+}
+
+.grid-item {
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
+  padding: 1.5em;
+}
+
 
 
 .grid-layout {
@@ -32,6 +44,28 @@ p {
   .grid-characters { grid-area: 2 / 2 / 7 / 5; }
 
 
+  @media (min-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    .grid-item{
+      width: 30vw;
+    }
+}
 
-
-
+@media (min-width: 1000px) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .grid-item{
+      width: 20vw;
+    }
+}
+@media (min-width: 1200px) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .grid-item{
+      width: 15vw;
+    }
+  }
