@@ -55,10 +55,12 @@ function closeCreateCharacterModal(event) {
   document.querySelector("#dialog-create-character").close();
 }
 function closeUpdateFailedDialog() {
-  console.log("close failed to update clicked");
+  console.log("Close failed to update clicked!");
   document.querySelector("#dialog-failed-to-update").close();
 }
 function cancelUpdate(event) {
+event.preventDefault();
+  console.log("Cancel button clicked!");
   event.preventDefault();
   console.log("cancel btn clicked");
   document.querySelector("#dialog-update-character").close();
@@ -142,7 +144,7 @@ function updateCharacterClicked(event) {
   document.querySelector("#dialog-update-character").close();
 }
 
-//  Update an existing character
+//  Updates an existing character
 async function updateCharacter(
   id,
   characterName,
@@ -175,16 +177,16 @@ async function updateCharacter(
     title,
     weapon,
   };
-  // convert the JS object to JSON string
+  // Converts the JS object to JSON string
   const json = JSON.stringify(characterToUpdate);
   // PUT fetch request with JSON in the body. Calls the specific element in resource
   const response = await fetch(`${endpoint}/characters/${id}.json`, {
     method: "PUT",
     body: json,
   });
-  // check if response is ok - if the response is successful
+  // Checks if response is ok - if the response is successful
   if (response.ok) {
-    console.log("Post succesfully updated in Firebase 🔥");
+    console.log("Character succesfully updated in Firebase!");
     updateCharactersGrid();
   } else {
     document.querySelector("#dialog-failed-to-update").showModal();
@@ -205,10 +207,9 @@ async function deleteCharacter(id) {
   const response = await fetch(`${endpoint}/characters/${id}.json`, {
     method: "DELETE",
   });
-
   if (response.ok) {
-    console.log("Character successfully deleted from Firebase");
-    showDeleteFeedback("Character is deleted");
+    console.log("Character successfully deleted from Firebase!");
+    showDeleteFeedback("Character is deleted!");
     updateCharactersGrid();
   }
 }
@@ -332,7 +333,7 @@ async function createCharacter(
     body: json,
   });
   if (response.ok) {
-    console.log("New character succesfully added to Firebase 🔥");
+    console.log("New character succesfully added to Firebase!");
     updateCharactersGrid();
   }
 }
@@ -350,7 +351,6 @@ function prepareData(dataObject) {
 
 function searchByName(searchValue) {
   searchValue = searchValue.toLowerCase().trim();
-
   return characters.filter(checkNames);
 
   function checkNames(character) {
@@ -372,7 +372,6 @@ function sortByOption(sortValue) {
 
 function filterByRace(inputValue) {
   inputValue = inputValue.toLowerCase();
-
   return characters.filter((character) =>
     character.race.toLowerCase().includes(inputValue)
   );

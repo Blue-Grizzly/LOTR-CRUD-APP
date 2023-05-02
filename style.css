@@ -60,10 +60,10 @@ p {
   }
 }
 @media (min-width: 1200px) {
-    .grid-container {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-    .grid-item{
-    width: 15vw;
+  .grid-container {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .grid-item {
+  width: 15vw;
   }
 }
