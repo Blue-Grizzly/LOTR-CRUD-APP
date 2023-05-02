@@ -286,7 +286,8 @@ function showCharacter(characterObject) {
   const html = /*html*/ `
         <article class="grid-item">
             <img src="${characterObject.image}" />
-            <h3>${characterObject.age}</h3>
+            <h3>${characterObject.name}</h3>
+            <p>${characterObject.age}</p>
             <p>${characterObject.birth}</p>
             <p>${characterObject.culture}</p>
             <p>${characterObject.death}</p>
