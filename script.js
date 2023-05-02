@@ -68,12 +68,6 @@ function cancelUpdate(event) {
   document.querySelector("#dialog-update-character").close();
 }
 
-// function showCharacter(characterObject) {
-// document
-//   .querySelector("#posts article:last-child .btn-update")
-//   .addEventListener("click", updateClicked);
-
-// called when update button is clicked
 
 function updateClicked(characterObject) {
   //saves the form in as a variable so easier to use below
@@ -107,7 +101,7 @@ function updateClicked(characterObject) {
 // }
 
 function updateCharacterClicked(event) {
-  //event.preventDefault();
+  event.preventDefault();
   const form = document.querySelector("#form-update-character");
   // extract the values from inputs in the form
   const name = form.name.value;
@@ -206,6 +200,7 @@ async function deleteCharacter(characterObject) {
   const response = await fetch(`${endpoint}/characters/${id}.json`, {
     method: "DELETE",
   });
+
   if (response.ok) {
     console.log("Character successfully deleted from Firebase!");
     showDeleteFeedback("Character is deleted!");
@@ -290,9 +285,8 @@ function showCharacters(listOfCharacters) {
 function showCharacter(characterObject) {
   const html = /*html*/ `
         <article class="grid-item">
-            <img src="${characterObject.image}">
-            <h3>${characterObject.name}</h3>
-            <p>${characterObject.age}</p>
+            <img src="${characterObject.image}" />
+            <h3>${characterObject.age}</h3>
             <p>${characterObject.birth}</p>
             <p>${characterObject.culture}</p>
             <p>${characterObject.death}</p>
