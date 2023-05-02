@@ -50,52 +50,56 @@ function initApp() {
     );
 }
 
+function closeCreateCharacterModal(event) {
+  event.preventDefault();
+  document.querySelector("#dialog-create-character").close();
+}
 function closeUpdateFailedDialog() {
   console.log("close failed to update clicked");
   document.querySelector("#dialog-failed-to-update").close();
 }
 function cancelUpdate(event) {
-event.preventDefault();
+  event.preventDefault();
   console.log("cancel btn clicked");
   document.querySelector("#dialog-update-character").close();
 }
 
 // function showCharacter(characterObject) {
-  // document
-  //   .querySelector("#posts article:last-child .btn-update")
-  //   .addEventListener("click", updateClicked);
+// document
+//   .querySelector("#posts article:last-child .btn-update")
+//   .addEventListener("click", updateClicked);
 
-  // called when update button is clicked
+// called when update button is clicked
 
-  function updateClicked(characterObject) {
-    //saves the form in as a variable so easier to use below
-    const updateForm = document.querySelector("#form-update-character");
+function updateClicked(characterObject) {
+  //saves the form in as a variable so easier to use below
+  const updateForm = document.querySelector("#form-update-character");
 
-    //the following makes info from object be displayed in the ModalWindow to provide
-    //Feedback to the user
+  //the following makes info from object be displayed in the ModalWindow to provide
+  //Feedback to the user
 
-    updateForm.characterName.value = characterObject.characterName;
-    updateForm.race.value = characterObject.race; //sets value of the form title to that of the object.
-    updateForm.image.value = characterObject.image;
-    updateForm.age.value = characterObject.age;
-    updateForm.birth.value = characterObject.birth;
-    updateForm.culture.value = characterObject.culture;
-    updateForm.death.value = characterObject.death;
-    updateForm.gender.value = characterObject.gender;
-    updateForm.language.value = characterObject.language;
-    updateForm.magical.value = characterObject.magical;
-    updateForm.realm.value = characterObject.realm;
-    updateForm.title.value = characterObject.title;
-    updateForm.weapon.value = characterObject.weapon;
+  updateForm.characterName.value = characterObject.characterName;
+  updateForm.race.value = characterObject.race; //sets value of the form title to that of the object.
+  updateForm.image.value = characterObject.image;
+  updateForm.age.value = characterObject.age;
+  updateForm.birth.value = characterObject.birth;
+  updateForm.culture.value = characterObject.culture;
+  updateForm.death.value = characterObject.death;
+  updateForm.gender.value = characterObject.gender;
+  updateForm.language.value = characterObject.language;
+  updateForm.magical.value = characterObject.magical;
+  updateForm.realm.value = characterObject.realm;
+  updateForm.title.value = characterObject.title;
+  updateForm.weapon.value = characterObject.weapon;
 
-    //sets the id of the form to the id for the specific object
-    updateForm.setAttribute("data-id", characterObject.id);
+  //sets the id of the form to the id for the specific object
+  updateForm.setAttribute("data-id", characterObject.id);
 
-    //shows the update form
-    document.querySelector("#dialog-update-character").showModal();
+  //shows the update form
+  document.querySelector("#dialog-update-character").showModal();
 
-    console.log("Update button clicked");
-  }
+  console.log("Update button clicked");
+}
 // }
 
 function updateCharacterClicked(event) {
