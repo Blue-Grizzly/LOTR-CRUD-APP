@@ -232,16 +232,7 @@ function showCharacter(characterObject) {
             <img src="${characterObject.image}" />
             <h3>Name: ${characterObject.name}</h3>
             <p>Age: ${characterObject.age}</p>
-            <p>Birth: ${characterObject.birth}</p>
-            <p>Culture: ${characterObject.culture}</p>
-            <p>Death: ${characterObject.death}</p>
-            <p>Gender: ${characterObject.gender}</p>
-            <p>Language: ${characterObject.language}</p>
-            <p>Magical ${characterObject.magical}</p>
             <p>Race: ${characterObject.race}</p>
-            <p>Realm: ${characterObject.realm}</p>
-            <p>Title: ${characterObject.title}</p>
-            <p>Weapon: ${characterObject.weapon}</p>
             <div class="btns">
                 <button class="btn-delete">Delete</button>
                 <button class="btn-update">Update</button>
