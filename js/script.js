@@ -250,6 +250,12 @@ function showCharacter(characterObject) {
     `;
   document.querySelector("#characters").insertAdjacentHTML("beforeend", html);
 
+  const gridItem = document.querySelector("#characters article:last-child");
+
+  gridItem.addEventListener("click", () => {
+    showCharacterModal(characterObject);
+  });
+
   document
     .querySelector("#characters article:last-child .btn-delete")
     .addEventListener("click", () => deleteCharacterClicked(characterObject));
@@ -257,6 +263,32 @@ function showCharacter(characterObject) {
     .querySelector("#characters article:last-child .btn-update")
     .addEventListener("click", () => updateClicked(characterObject));
 }
+
+function showCharacterModal(characterObject) {
+  const modal = document.createElement("dialog");
+  modal.innerHTML = /*html*/ `
+    <img src="${characterObject.image}" />
+    <h3>Name: ${characterObject.name}</h3>
+    <p>Age: ${characterObject.age}</p>
+    <p>Birth: ${characterObject.birth}</p>
+    <p>Culture: ${characterObject.culture}</p>
+    <p>Death: ${characterObject.death}</p>
+    <p>Gender: ${characterObject.gender}</p>
+    <p>Language: ${characterObject.language}</p>
+    <p>Magical ${characterObject.magical}</p>
+    <p>Race: ${characterObject.race}</p>
+    <p>Realm: ${characterObject.realm}</p>
+    <p>Title: ${characterObject.title}</p>
+    <p>Weapon: ${characterObject.weapon}</p>
+  `;
+  document.body.appendChild(modal);
+  modal.showModal();
+  modal.addEventListener("click", () => {
+    modal.remove();
+  });
+}
+
+
 
 async function deleteCharacterClicked(characterObject) {
   const response = await deleteCharacter(characterObject);
