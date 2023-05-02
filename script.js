@@ -68,12 +68,6 @@ function cancelUpdate(event) {
   document.querySelector("#dialog-update-character").close();
 }
 
-// function showCharacter(characterObject) {
-// document
-//   .querySelector("#posts article:last-child .btn-update")
-//   .addEventListener("click", updateClicked);
-
-// called when update button is clicked
 
 function updateClicked(characterObject) {
   //saves the form in as a variable so easier to use below
