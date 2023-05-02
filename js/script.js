@@ -68,7 +68,6 @@ function cancelUpdate(event) {
   document.querySelector("#dialog-update-character").close();
 }
 
-
 function updateClicked(characterObject) {
   //saves the form in as a variable so easier to use below
   const updateForm = document.querySelector("#form-update-character");
@@ -194,7 +193,6 @@ async function updateCharacter(
 // 5. Som en daglig bruger vil jeg gerne have tydelig feedback på når jeg sletter et {item},
 //  så jeg ved at jeg har fjernet noget fra listen.
 
-
 async function deleteCharacter(characterObject) {
   const id = characterObject.id;
   const response = await fetch(`${endpoint}/characters/${id}.json`, {
@@ -215,7 +213,7 @@ function showDeleteFeedback(message) {
   );
   dialogMessage.textContent = message;
   dialog.showModal();
-  setTimeout(closeDialog, 3000);
+  setTimeout(closeDialog, 1000);
 
   function closeDialog() {
     dialog.close();
@@ -263,7 +261,6 @@ function createCharacterClicked(event) {
 }
 
 async function updateCharactersGrid() {
-  document.querySelector("#characters").innerHTML = "";
   characterList = await getCharacters();
   showCharacters(characterList);
 }
@@ -274,10 +271,10 @@ async function getCharacters() {
   return prepareData(data);
 }
 
-function showCharacters(listOfCharacters) {
+function showCharacters(characterList) {
   document.querySelector("#characters").innerHTML = "";
 
-  for (const character of listOfCharacters) {
+  for (const character of characterList) {
     showCharacter(character);
   }
 }
@@ -286,17 +283,18 @@ function showCharacter(characterObject) {
   const html = /*html*/ `
         <article class="grid-item">
             <img src="${characterObject.image}" />
-            <h3>${characterObject.age}</h3>
-            <p>${characterObject.birth}</p>
-            <p>${characterObject.culture}</p>
-            <p>${characterObject.death}</p>
-            <p>${characterObject.gender}</p>
-            <p>${characterObject.language}</p>
-            <p>${characterObject.magical}</p>
-            <p>${characterObject.race}</p>
-            <p>${characterObject.realm}</p>
-            <p>${characterObject.title}</p>
-            <p>${characterObject.weapon}</p>
+            <h3>Name: ${characterObject.name}</h3>
+            <p>Age: ${characterObject.age}</p>
+            <p>Birth: ${characterObject.birth}</p>
+            <p>Culture: ${characterObject.culture}</p>
+            <p>Death: ${characterObject.death}</p>
+            <p>Gender: ${characterObject.gender}</p>
+            <p>Language: ${characterObject.language}</p>
+            <p>Magical ${characterObject.magical}</p>
+            <p>Race: ${characterObject.race}</p>
+            <p>Realm: ${characterObject.realm}</p>
+            <p>Title: ${characterObject.title}</p>
+            <p>Weapon: ${characterObject.weapon}</p>
             <div class="btns">
                 <button class="btn-delete">Delete</button>
                 <button class="btn-update">Update</button>
@@ -307,7 +305,7 @@ function showCharacter(characterObject) {
 
   document
     .querySelector("#characters article:last-child .btn-delete")
-    .addEventListener("click", ()=>deleteCharacter(characterObject));
+    .addEventListener("click", () => deleteCharacter(characterObject));
   document
     .querySelector("#characters article:last-child .btn-update")
     .addEventListener("click", () => updateClicked(characterObject));
@@ -389,7 +387,10 @@ function sortByOption(sortValue) {
 
 function filterByRace(inputValue) {
   inputValue = inputValue.toLowerCase();
+  if(inputValue !== "filterall"){
   return characterList.filter((character) =>
     character.race.toLowerCase().includes(inputValue)
-  );
+  );} else{
+    updateCharactersGrid();
+  }
 }
