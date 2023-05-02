@@ -215,7 +215,7 @@ function showDeleteFeedback(message) {
   );
   dialogMessage.textContent = message;
   dialog.showModal();
-  setTimeout(closeDialog, 3000);
+  setTimeout(closeDialog, 1000);
 
   function closeDialog() {
     dialog.close();
