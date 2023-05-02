@@ -3,7 +3,7 @@
 const endpoint =
   "https://lotr-crud-default-rtdb.europe-west1.firebasedatabase.app/";
 
-let characters;
+let characterList;
 
 window.addEventListener("load", initApp);
 
@@ -200,12 +200,9 @@ async function updateCharacter(
 // 5. Som en daglig bruger vil jeg gerne have tydelig feedback på når jeg sletter et {item},
 //  så jeg ved at jeg har fjernet noget fra listen.
 
-function deletecharacterClicked(event) {
-  const id = event.target.getAttribute("data-id");
-  deleteCharacter(id);
-}
 
-async function deleteCharacter(id) {
+async function deleteCharacter(characterObject) {
+  const id = characterObject.id;
   const response = await fetch(`${endpoint}/characters/${id}.json`, {
     method: "DELETE",
   });
@@ -271,7 +268,8 @@ function createCharacterClicked(event) {
 }
 
 async function updateCharactersGrid() {
-  const characterList = await getCharacters();
+  document.querySelector("#characters").innerHTML = "";
+  characterList = await getCharacters();
   showCharacters(characterList);
 }
 
@@ -315,7 +313,7 @@ function showCharacter(characterObject) {
 
   document
     .querySelector("#characters article:last-child .btn-delete")
-    .addEventListener("click", deletecharacterClicked);
+    .addEventListener("click", ()=>deleteCharacter(characterObject));
   document
     .querySelector("#characters article:last-child .btn-update")
     .addEventListener("click", () => updateClicked(characterObject));
@@ -376,7 +374,7 @@ function prepareData(dataObject) {
 
 function searchByName(searchValue) {
   searchValue = searchValue.toLowerCase().trim();
-  return characters.filter(checkNames);
+  return characterList.filter(checkNames);
 
   function checkNames(character) {
     return character.name.toLowerCase().includes(searchValue);
@@ -385,19 +383,19 @@ function searchByName(searchValue) {
 
 function sortByOption(sortValue) {
   if (sortValue === "name") {
-    return characters.sort((a, b) => a.name.localeCompare(b.name));
+    return characterList.sort((a, b) => a.name.localeCompare(b.name));
   } else if (sortValue === "age") {
-    return characters.sort((a, b) => a.age - b.age);
+    return characterList.sort((a, b) => a.age - b.age);
   } else if (sortValue === "title") {
-    return characters.sort((a, b) => a.title.localeCompare(b.title));
+    return characterList.sort((a, b) => a.title.localeCompare(b.title));
   } else if (sortValue === "race") {
-    return characters.sort((a, b) => a.race.localeCompare(b.race));
+    return characterList.sort((a, b) => a.race.localeCompare(b.race));
   }
 }
 
 function filterByRace(inputValue) {
   inputValue = inputValue.toLowerCase();
-  return characters.filter((character) =>
+  return characterList.filter((character) =>
     character.race.toLowerCase().includes(inputValue)
   );
 }
