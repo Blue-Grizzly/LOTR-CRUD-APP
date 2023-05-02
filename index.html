@@ -8,7 +8,16 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+  <main>
+    <section class="grid-layout">
+    <section class="grid-search" id="search">
+      <form id="searchbyname">
+          <input type="search" id="input-search" placeholder="Search by name">
+      </form>
+      <button id="btn-create-character">Create character</button>
+    </section>
 
+    <main class="grid-sort-filter">
     <section id="sort">
         <legend for="sortby">Sort by:</legend>
         <form id="sortby" name="sortby">
@@ -21,13 +30,6 @@
             </select>
         </form>
 
-    </section>
-
-    <section id="search">
-        <form id="searchbyname">
-            <input type="search" id="input-search" placeholder="Search by name">
-        </form>
-        <button id="btn-create-character">Create character</button>
     </section>
 
     <section id="filter">
@@ -46,8 +48,15 @@
             <label for="filterbyainur">Ainur</label>
             <input type="radio" name="filterby" id="filterbyainur" value="ainur">
         </form>
-    
+    </section>
         
+    <section>
+      <h2>Characters</h2>
+      <section id="characters" class="grid-characters">
+
+      </section>
+
+</main>
 
     <dialog id="dialog-create-character">
     <h2>Create new character</h2>
@@ -62,12 +71,7 @@
     </form>
 </dialog>
 
-<main>
-    <section>
-        <h2>Characters</h2>
-        <section id="characters" class="grid-container"></section>
-    </section>
-</main>
+
                 <!-- dialog - delete post -->
  <dialog id="dialog-delete-post">
         <h2>Do you want to delete a character?</h2>
