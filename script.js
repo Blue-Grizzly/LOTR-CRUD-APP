@@ -25,6 +25,9 @@ function initApp() {
     .addEventListener("click", closeUpdateFailedDialog);
 
   document
+    .querySelector("#form-create-character .btn-cancel")
+    .addEventListener("click", closeCreateCharacterModal);
+  document
     .querySelector("#form-update-character")
     .addEventListener("submit", updateCharacterClicked);
 
@@ -52,6 +55,7 @@ function initApp() {
 
 function closeCreateCharacterModal(event) {
   event.preventDefault();
+  console.log("cancel CreateCharacter Clicked");
   document.querySelector("#dialog-create-character").close();
 }
 function closeUpdateFailedDialog() {
@@ -59,7 +63,7 @@ function closeUpdateFailedDialog() {
   document.querySelector("#dialog-failed-to-update").close();
 }
 function cancelUpdate(event) {
-event.preventDefault();
+  event.preventDefault();
   console.log("Cancel button clicked!");
   document.querySelector("#dialog-update-character").close();
 }
@@ -78,7 +82,7 @@ function updateClicked(characterObject) {
   //the following makes info from object be displayed in the ModalWindow to provide
   //Feedback to the user
 
-  updateForm.characterName.value = characterObject.characterName;
+  updateForm.name.value = characterObject.name;
   updateForm.race.value = characterObject.race; //sets value of the form title to that of the object.
   updateForm.image.value = characterObject.image;
   updateForm.age.value = characterObject.age;
@@ -106,7 +110,7 @@ function updateCharacterClicked(event) {
   event.preventDefault();
   const form = document.querySelector("#form-update-character");
   // extract the values from inputs in the form
-  const characterName = form.elements.namedItem("characterName").value;
+  const name = form.name.value;
   const race = form.race.value;
   const image = form.image.value;
   const age = form.age.value;
@@ -125,7 +129,7 @@ function updateCharacterClicked(event) {
   //puts in data from from passes it to updateCharacter
   updateCharacter(
     id,
-    characterName,
+    name,
     race,
     image,
     age,
@@ -145,7 +149,7 @@ function updateCharacterClicked(event) {
 //  Updates an existing character
 async function updateCharacter(
   id,
-  characterName,
+  name,
   race,
   image,
   age,
@@ -161,19 +165,19 @@ async function updateCharacter(
 ) {
   // Character object we update
   const characterToUpdate = {
-    characterName,
-    race,
-    image,
-    age,
-    birth,
-    culture,
-    death,
-    gender,
-    language,
-    magical,
-    realm,
-    title,
-    weapon,
+    name: name,
+    race: race,
+    image: image,
+    age: age,
+    birth: birth,
+    culture: culture,
+    death: death,
+    gender: gender,
+    language: language,
+    magical: magical,
+    realm: realm,
+    title: title,
+    weapon: weapon,
   };
   // Converts the JS object to JSON string
   const json = JSON.stringify(characterToUpdate);
@@ -234,11 +238,35 @@ function showCreateCharacterDialog() {
 
 function createCharacterClicked(event) {
   event.preventDefault();
-  const form = event.target;
-  const title = form.title.value;
-  const body = form.body.value;
+  const form = document.querySelector("#form-create-character");
+  const name = form.name.value;
+  const race = form.race.value;
   const image = form.image.value;
-  createCharacter(title, body, image);
+  const age = form.age.value;
+  const birth = form.birth.value;
+  const culture = form.culture.value;
+  const death = form.death.value;
+  const gender = form.gender.value;
+  const language = form.language.value;
+  const magical = form.magical.value;
+  const realm = form.realm.value;
+  const title = form.title.value;
+  const weapon = form.weapon.value;
+  createCharacter(
+    name,
+    race,
+    image,
+    age,
+    birth,
+    culture,
+    death,
+    gender,
+    language,
+    magical,
+    realm,
+    title,
+    weapon
+  );
   form.reset();
   document.querySelector("#dialog-create-character").close();
 }
@@ -273,7 +301,6 @@ function showCharacter(characterObject) {
             <p>${characterObject.gender}</p>
             <p>${characterObject.language}</p>
             <p>${characterObject.magical}</p>
-            <p>${characterObject.lotrName}</p>
             <p>${characterObject.race}</p>
             <p>${characterObject.realm}</p>
             <p>${characterObject.title}</p>
@@ -295,6 +322,9 @@ function showCharacter(characterObject) {
 }
 
 async function createCharacter(
+  name,
+  race,
+  image,
   age,
   birth,
   culture,
@@ -302,14 +332,14 @@ async function createCharacter(
   gender,
   language,
   magical,
-  lotrName,
-  race,
   realm,
   title,
-  weapon,
-  image
+  weapon
 ) {
   const newCharacter = {
+    name: name,
+    race: race,
+    image: image,
     age: age,
     birth: birth,
     culture: culture,
@@ -317,12 +347,9 @@ async function createCharacter(
     gender: gender,
     language: language,
     magical: magical,
-    lotrName: lotrName,
-    race: race,
     realm: realm,
     title: title,
     weapon: weapon,
-    image: image,
   };
   console.log(newCharacter);
   const json = JSON.stringify(newCharacter);
