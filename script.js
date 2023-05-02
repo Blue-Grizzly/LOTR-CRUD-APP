@@ -275,9 +275,9 @@ function showCharacter(characterObject) {
     `;
   document.querySelector("#characters").insertAdjacentHTML("beforeend", html);
 
-  document.querySelector("#characters article:last-child .btn-delete").addEventListener("click", deleteClicked);
-  document.querySelector("#characters article:last-child .btn-update").addEventListener("click", updateClicked);
-  
+  document.querySelector("#characters article:last-child .btn-delete").addEventListener("click", deletecharacterClicked);
+  document.querySelector("#characters article:last-child .btn-update").addEventListener("click", updateCharacterClicked);
+
 }
 
 async function createCharacter(age, birth, culture, death, gender, language, magical, lotrName, race, realm, title, weapon, image) {
