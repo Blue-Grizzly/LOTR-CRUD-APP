@@ -1,9 +1,4 @@
-import {
-  getCharacters,
-  createCharacter,
-  updateCharacter,
-  deleteCharacter,
-} from "./rest-service.js";
+import { getCharacters, createCharacter, updateCharacter, deleteCharacter } from "./rest-service.js";
 import { filterByRace, sortByOption, searchByName } from "./helpers.js";
 
 let characterList;
@@ -12,46 +7,15 @@ window.addEventListener("load", initApp);
 
 function initApp() {
   updateCharactersGrid();
-  document
-    .querySelector("#btn-create-character")
-    .addEventListener("click", showCreateCharacterDialog);
-  document
-    .querySelector("#form-create-character")
-    .addEventListener("submit", createCharacterClicked);
-
-  document
-    .querySelector("#form-update-character .btn-cancel")
-    .addEventListener("click", cancelUpdate);
-
-  document
-    .querySelector("#form-create-character .btn-cancel")
-    .addEventListener("click", cancelCreate);
-
-  
-  document
-    .querySelector("#form-update-character")
-    .addEventListener("submit", updateCharacterClicked);
-
-  document
-    .querySelector("#sortbyselect")
-    .addEventListener("change", (event) =>
-      showCharacters(sortByOption(event.target.value))
-    );
-  document
-    .querySelector("#input-search")
-    .addEventListener("keyup", (event) =>
-      showCharacters(searchByName(event.target.value))
-    );
-  document
-    .querySelector("#input-search")
-    .addEventListener("search", (event) =>
-      showCharacters(searchByName(event.target.value))
-    );
-  document
-    .querySelector("#filterby")
-    .addEventListener("change", (event) =>
-      showCharacters(filterByRace(event.target.value))
-    );
+  document.querySelector("#btn-create-character").addEventListener("click", showCreateCharacterDialog);
+  document.querySelector("#form-create-character").addEventListener("submit", createCharacterClicked);
+  document.querySelector("#form-update-character .btn-cancel").addEventListener("click", cancelUpdate);
+  document.querySelector("#form-create-character .btn-cancel").addEventListener("click", cancelCreate);
+  document.querySelector("#form-update-character").addEventListener("submit", updateCharacterClicked);
+  document.querySelector("#sortbyselect").addEventListener("change", event => showCharacters(sortByOption(event.target.value)));
+  document.querySelector("#input-search").addEventListener("keyup", event => showCharacters(searchByName(event.target.value)));
+  document.querySelector("#input-search").addEventListener("search", event => showCharacters(searchByName(event.target.value)));
+  document.querySelector("#filterby").addEventListener("change", event => showCharacters(filterByRace(event.target.value)));
 }
 
 function closeCreateCharacterModal(event) {
@@ -71,7 +35,7 @@ function cancelUpdate(event) {
   document.querySelector("#dialog-update-character").close();
 }
 
-function cancelCreate(event){
+function cancelCreate(event) {
   event.preventDefault();
   document.querySelector("#dialog-create-character").close();
 }
@@ -129,22 +93,7 @@ async function updateCharacterClicked(event) {
 
   //puts in data from from passes it to updateCharacter
 
-  const response = await updateCharacter(
-    id,
-    name,
-    race,
-    image,
-    age,
-    birth,
-    culture,
-    death,
-    gender,
-    language,
-    magical,
-    realm,
-    title,
-    weapon
-  ); //match the parameters in updatepost!!!
+  const response = await updateCharacter(id, name, race, image, age, birth, culture, death, gender, language, magical, realm, title, weapon); //match the parameters in updatepost!!!
   if (response.ok) {
     document.querySelector("#dialog-update-character").close();
     updateCharactersGrid();
@@ -194,21 +143,7 @@ async function createCharacterClicked(event) {
   const realm = form.realm.value;
   const title = form.title.value;
   const weapon = form.weapon.value;
-  const response = await createCharacter(
-    name,
-    race,
-    image,
-    age,
-    birth,
-    culture,
-    death,
-    gender,
-    language,
-    magical,
-    realm,
-    title,
-    weapon
-  );
+  const response = await createCharacter(name, race, image, age, birth, culture, death, gender, language, magical, realm, title, weapon);
   if (response.ok) {
     document.querySelector("#dialog-create-character").close();
     updateCharactersGrid();
@@ -251,20 +186,14 @@ function showCharacter(characterObject) {
     `;
   document.querySelector("#characters").insertAdjacentHTML("beforeend", html);
 
-  const gridItem = document.querySelector(
-    "#characters article:last-child .clickable"
-  );
+  const gridItem = document.querySelector("#characters article:last-child .clickable");
 
   gridItem.addEventListener("click", () => {
     showCharacterModal(characterObject);
   });
 
-  document
-    .querySelector("#characters article:last-child .btn-delete")
-    .addEventListener("click", () => deleteCharacterClicked(characterObject));
-  document
-    .querySelector("#characters article:last-child .btn-update")
-    .addEventListener("click", () => updateClicked(characterObject));
+  document.querySelector("#characters article:last-child .btn-delete").addEventListener("click", () => deleteCharacterClicked(characterObject));
+  document.querySelector("#characters article:last-child .btn-update").addEventListener("click", () => updateClicked(characterObject));
 }
 
 function showCharacterModal(characterObject) {
