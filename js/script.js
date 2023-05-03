@@ -27,7 +27,6 @@ function initApp() {
     .querySelector("#form-create-character .btn-cancel")
     .addEventListener("click", cancelCreate);
 
-  
   document
     .querySelector("#form-update-character")
     .addEventListener("submit", updateCharacterClicked);
@@ -54,7 +53,6 @@ function initApp() {
     );
 }
 
-
 function cancelUpdate(event) {
   event.preventDefault();
   console.log("Cancel update button clicked!");
@@ -64,7 +62,7 @@ function cancelUpdate(event) {
 function cancelCreate(event) {
   event.preventDefault();
   document.querySelector("#dialog-create-character").close();
-   document.querySelector("#form-create-character").reset();
+  document.querySelector("#form-create-character").reset();
 }
 
 function updateClicked(characterObject) {
@@ -154,7 +152,9 @@ async function updateCharacterClicked(event) {
 
 function showDeleteFeedback() {
   const dialog = document.getElementById("dialog-delete-feedback");
-  const dialogMessage = document.getElementById("dialog-delete-feedback-message");
+  const dialogMessage = document.getElementById(
+    "dialog-delete-feedback-message"
+  );
   dialogMessage.textContent;
   dialog.showModal();
   setTimeout(closeDialog, 1000);
@@ -258,6 +258,21 @@ function showCharacter(characterObject) {
     .addEventListener("click", () => updateClicked(characterObject));
 }
 
+function deleteCharacterClicked(characterObject) {
+  document.querySelector("#dialog-delete-character-title").textContent =
+    characterObject.title;
+
+  document
+    .querySelector("#form-delete-character")
+    .setAttribute("data-id", characterObject.id);
+
+  document.querySelector("#dialog-delete-character").showModal();
+  
+  document
+    .querySelector("#form-delete-character")
+    .addEventListener("submit", deleteCharacterConfirm);
+}
+
 function showCharacterModal(characterObject) {
   const modal = document.createElement("dialog");
   modal.innerHTML = /*html*/ `
@@ -282,8 +297,15 @@ function showCharacterModal(characterObject) {
   });
 }
 
-async function deleteCharacterClicked(characterObject) {
-  const response = await deleteCharacter(characterObject);
+async function deleteCharacterConfirm() {
+  const id = document
+    .querySelector("#form-delete-character")
+    .getAttribute("data-id");
+
+
+  const response = await deleteCharacter(id);
+
+
   if (response.ok) {
     updateCharactersGrid();
     showDeleteFeedback();
