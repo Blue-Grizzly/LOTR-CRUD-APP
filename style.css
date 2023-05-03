@@ -28,29 +28,18 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* Grid search */
-.grid-search {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  margin: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-
 
 #input-search {
-  padding: 10px;
+  margin-left: 28vw;
   border: none;
   border-bottom: 2px solid #333;
   font-size: 1.2rem;
-  width: 90%;
 }
 
 #btn-create-character {
+  margin-left: auto;  
+  margin-right: auto;
+  text-align: center;
   padding: 10px 20px;
   background-color: #bdd076;
   color: #fff;
@@ -77,8 +66,7 @@ h2 {
 
 
 dialog {
-  width: 500px;
-  padding: 20px;
+
   border: none;
   border-radius: 10px;
   background-color: #fff;
@@ -324,6 +312,7 @@ select {
 dialog {
   width: 65vw;
   padding: 2em 1em;
+  margin: auto;
 }
 
 dialog::backdrop {
@@ -346,7 +335,7 @@ dialog p {
 .tools-grid {
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
   padding: 1.5em;
-  padding-top: 25vh;
+  padding-top: 12vh;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1em;

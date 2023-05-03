@@ -69,13 +69,11 @@ function updateClicked(characterObject) {
   updateForm.name.value = characterObject.name;
   updateForm.race.value = characterObject.race; //sets value of the form title to that of the object.
   updateForm.image.value = characterObject.image;
-  updateForm.age.value = characterObject.age;
   updateForm.birth.value = characterObject.birth;
   updateForm.culture.value = characterObject.culture;
   updateForm.death.value = characterObject.death;
   updateForm.gender.value = characterObject.gender;
   updateForm.language.value = characterObject.language;
-  updateForm.magical.value = characterObject.magical;
   updateForm.realm.value = characterObject.realm;
   updateForm.title.value = characterObject.title;
   updateForm.weapon.value = characterObject.weapon;
@@ -96,17 +94,15 @@ async function createCharacterClicked(event) {
   const name = form.name.value;
   const race = form.race.value;
   const image = form.image.value;
-  const age = form.age.value;
   const birth = form.birth.value;
   const culture = form.culture.value;
   const death = form.death.value;
   const gender = form.gender.value;
   const language = form.language.value;
-  const magical = form.magical.value;
   const realm = form.realm.value;
   const title = form.title.value;
   const weapon = form.weapon.value;
-  const response = await createCharacter(name, race, image, age, birth, culture, death, gender, language, magical, realm, title, weapon);
+  const response = await createCharacter(name, race, image, birth, culture, death, gender, language, realm, title, weapon);
   if (response.ok) {
     document.querySelector("#dialog-create-character").close();
     updateCharactersGrid();
@@ -126,13 +122,11 @@ async function updateCharacterClicked(event) {
   const name = form.name.value;
   const race = form.race.value;
   const image = form.image.value;
-  const age = form.age.value;
   const birth = form.birth.value;
   const culture = form.culture.value;
   const death = form.death.value;
   const gender = form.gender.value;
   const language = form.language.value;
-  const magical = form.magical.value;
   const realm = form.realm.value;
   const title = form.title.value;
   const weapon = form.weapon.value;
@@ -141,7 +135,7 @@ async function updateCharacterClicked(event) {
 
   //puts in data from from passes it to updateCharacter
 
-  const response = await updateCharacter(id, name, race, image, age, birth, culture, death, gender, language, magical, realm, title, weapon); //match the parameters in updatepost!!!
+  const response = await updateCharacter(id, name, race, image, birth, culture, death, gender, language, realm, title, weapon); //match the parameters in updatepost!!!
   if (response.ok) {
     document.querySelector("#dialog-update-character").close();
     updateCharactersGrid();
@@ -155,8 +149,7 @@ async function updateCharacterClicked(event) {
 
 function deleteCharacterClicked(characterObject) {
   console.log(characterObject);
-  document.querySelector("#dialog-delete-character-title").textContent =
-    characterObject.name;
+  document.querySelector("#dialog-delete-character-title").textContent = characterObject.name;
 
   document.querySelector("#dialog-delete-character").showModal();
   
@@ -228,7 +221,7 @@ function showCharacter(characterObject) {
         <div class="clickable">    
             <img src="${characterObject.image}" />
             <h3>Name: ${characterObject.name}</h3>
-            <p>Age: ${characterObject.age}</p>
+            <p>Weapon: ${characterObject.weapon}</p>
             <p>Race: ${characterObject.race}</p>
         </div>
             <div class="btns">
