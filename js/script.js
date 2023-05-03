@@ -289,4 +289,14 @@ async function deleteCharacterClicked(characterObject) {
   }
 }
 
+function showErrorMessage(message) {
+  document.querySelector(".error-message").textContent = message;
+  document.querySelector(".error-message").classList.remove("hide");
+}
+
+function hideErrorMessage() {
+  document.querySelector(".error-message").textContent = "";
+  document.querySelector(".error-message").classList.add("hide");
+}
+
 export {characterList};
