@@ -249,30 +249,28 @@ function showCharacter(characterObject) {
   document.querySelector("#characters article:last-child .btn-update").addEventListener("click", () => updateClicked(characterObject));
 }
 
-
 function showCharacterModal(characterObject) {
-  const modal = document.createElement("dialog");
-  modal.innerHTML = /*html*/ `
-    <img src="${characterObject.image}" />
-    <h3>Name: ${characterObject.name}</h3>
-    <p>Age: ${characterObject.age}</p>
-    <p>Birth: ${characterObject.birth}</p>
-    <p>Culture: ${characterObject.culture}</p>
-    <p>Death: ${characterObject.death}</p>
-    <p>Gender: ${characterObject.gender}</p>
-    <p>Language: ${characterObject.language}</p>
-    <p>Magical ${characterObject.magical}</p>
-    <p>Race: ${characterObject.race}</p>
-    <p>Realm: ${characterObject.realm}</p>
-    <p>Title: ${characterObject.title}</p>
-    <p>Weapon: ${characterObject.weapon}</p>
-  `;
-  document.body.appendChild(modal);
+  const modal = document.querySelector("#character-modal");
+  modal.querySelector("#character-image").src = characterObject.image;
+  modal.querySelector("#character-name").textContent = characterObject.name;
+  modal.querySelector("#character-age").textContent = characterObject.age;
+  modal.querySelector("#character-birth").textContent = characterObject.birth;
+  modal.querySelector("#character-culture").textContent =characterObject.culture;
+  modal.querySelector("#character-death").textContent = characterObject.death;
+  modal.querySelector("#character-gender").textContent = characterObject.gender;
+  modal.querySelector("#character-language").textContent =characterObject.language;
+  modal.querySelector("#character-magical").textContent =characterObject.magical;
+  modal.querySelector("#character-race").textContent = characterObject.race;
+  modal.querySelector("#character-realm").textContent = characterObject.realm;
+  modal.querySelector("#character-title").textContent = characterObject.title;
+  modal.querySelector("#character-weapon").textContent = characterObject.weapon;
   modal.showModal();
-  modal.addEventListener("click", () => {
-  modal.remove();
+  modal.querySelector("button").addEventListener("click", () => {
+    modal.close();
   });
 }
+
+
 
 
 function showErrorMessage(message) {
