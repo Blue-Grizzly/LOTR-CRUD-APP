@@ -53,7 +53,7 @@ document
 
 function closeCreateCharacterModal(event) {
   event.preventDefault();
-  console.log("Cancel CreateCharacter clicked!");
+  console.log("Cancel Create Character clicked!");
   document.querySelector("#dialog-create-character").close();
 }
 
