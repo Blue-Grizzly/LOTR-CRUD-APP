@@ -67,6 +67,35 @@ function updateClicked(characterObject) {
 }
 // }
 
+async function createCharacterClicked(event) {
+  event.preventDefault();
+  const form = document.querySelector("#form-create-character");
+  const name = form.name.value;
+  const race = form.race.value;
+  const image = form.image.value;
+  const age = form.age.value;
+  const birth = form.birth.value;
+  const culture = form.culture.value;
+  const death = form.death.value;
+  const gender = form.gender.value;
+  const language = form.language.value;
+  const magical = form.magical.value;
+  const realm = form.realm.value;
+  const title = form.title.value;
+  const weapon = form.weapon.value;
+  const response = await createCharacter(name, race, image, age, birth, culture, death, gender, language, magical, realm, title, weapon);
+  if (response.ok) {
+    document.querySelector("#dialog-create-character").close();
+    updateCharactersGrid();
+    form.reset();
+    hideErrorMessage();
+    event.target.parentNode.close();
+  } else {
+    console.log(response.status, response.statusText);
+    showErrorMessage("Something went wrong. Please, try again!");
+  }
+}
+
 async function updateCharacterClicked(event) {
   event.preventDefault();
   const form = document.querySelector("#form-update-character");
@@ -121,35 +150,6 @@ function showDeleteFeedback() {
 function showCreateCharacterDialog() {
   document.querySelector("#dialog-create-character").showModal();
   console.log("Create New Character button clicked!");
-}
-
-async function createCharacterClicked(event) {
-  event.preventDefault();
-  const form = document.querySelector("#form-create-character");
-  const name = form.name.value;
-  const race = form.race.value;
-  const image = form.image.value;
-  const age = form.age.value;
-  const birth = form.birth.value;
-  const culture = form.culture.value;
-  const death = form.death.value;
-  const gender = form.gender.value;
-  const language = form.language.value;
-  const magical = form.magical.value;
-  const realm = form.realm.value;
-  const title = form.title.value;
-  const weapon = form.weapon.value;
-  const response = await createCharacter(name, race, image, age, birth, culture, death, gender, language, magical, realm, title, weapon);
-  if (response.ok) {
-    document.querySelector("#dialog-create-character").close();
-    updateCharactersGrid();
-    form.reset();
-    hideErrorMessage();
-    event.target.parentNode.close();
-  } else {
-    console.log(response.status, response.statusText);
-    showErrorMessage("Something went wrong. Please, try again!");
-  }
 }
 
 async function updateCharactersGrid() {
