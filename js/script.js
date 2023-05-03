@@ -53,7 +53,7 @@ document
 
 function closeCreateCharacterModal(event) {
   event.preventDefault();
-  console.log("cancel CreateCharacter Clicked");
+  console.log("Cancel CreateCharacter clicked!");
   document.querySelector("#dialog-create-character").close();
 }
 
@@ -95,7 +95,7 @@ function updateClicked(characterObject) {
   //shows the update form
   document.querySelector("#dialog-update-character").showModal();
 
-  console.log("Update button clicked");
+  console.log("Update button clicked!");
 }
 // }
 
