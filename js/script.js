@@ -1,5 +1,9 @@
-import { getCharacters, createCharacter, updateCharacter, deleteCharacter } from "./rest-service.js";
-
+import {
+  getCharacters,
+  createCharacter,
+  updateCharacter,
+  deleteCharacter,
+} from "./rest-service.js";
 
 let characterList;
 
@@ -118,8 +122,7 @@ async function updateCharacterClicked(event) {
   const id = form.getAttribute("data-id");
 
   //puts in data from from passes it to updateCharacter
-  
-  
+
   const response = await updateCharacter(
     id,
     name,
@@ -144,21 +147,17 @@ async function updateCharacterClicked(event) {
   }
 }
 
-
-
 // 4. Som en administrativ bruger vil jeg gerne kunne slette et {item} så det forsvinder fra databasen.
 
 // 5. Som en daglig bruger vil jeg gerne have tydelig feedback på når jeg sletter et {item},
 //  så jeg ved at jeg har fjernet noget fra listen.
 
-
-
-function showDeleteFeedback(message) {
+function showDeleteFeedback() {
   const dialog = document.getElementById("dialog-delete-feedback");
   const dialogMessage = document.getElementById(
     "dialog-delete-feedback-message"
   );
-  dialogMessage.textContent = message;
+  dialogMessage.textContent;
   dialog.showModal();
   setTimeout(closeDialog, 1000);
 
@@ -217,7 +216,6 @@ async function updateCharactersGrid() {
   showCharacters(characterList);
 }
 
-
 function showCharacters(characterList) {
   document.querySelector("#characters").innerHTML = "";
   console.log(characterList);
@@ -230,10 +228,12 @@ function showCharacters(characterList) {
 function showCharacter(characterObject) {
   const html = /*html*/ `
         <article class="grid-item">
+        <div class="clickable">    
             <img src="${characterObject.image}" />
             <h3>Name: ${characterObject.name}</h3>
             <p>Age: ${characterObject.age}</p>
             <p>Race: ${characterObject.race}</p>
+        </div>
             <div class="btns">
                 <button class="btn-delete">Delete</button>
                 <button class="btn-update">Update</button>
@@ -242,7 +242,9 @@ function showCharacter(characterObject) {
     `;
   document.querySelector("#characters").insertAdjacentHTML("beforeend", html);
 
-  const gridItem = document.querySelector("#characters article:last-child");
+  const gridItem = document.querySelector(
+    "#characters article:last-child .clickable"
+  );
 
   gridItem.addEventListener("click", () => {
     showCharacterModal(characterObject);
@@ -280,15 +282,14 @@ function showCharacterModal(characterObject) {
   });
 }
 
-
-
 async function deleteCharacterClicked(characterObject) {
   const response = await deleteCharacter(characterObject);
-    if (response.ok) {
-      updateCharactersGrid();
-    } else {
-      document.querySelector("#dialog-failed-to-update").showModal();
-    }
+  if (response.ok) {
+    updateCharactersGrid();
+    showDeleteFeedback();
+  } else {
+    document.querySelector("#dialog-failed-to-update").showModal();
+  }
 }
 
 function searchByName(searchValue) {
@@ -314,10 +315,11 @@ function sortByOption(sortValue) {
 
 function filterByRace(inputValue) {
   inputValue = inputValue.toLowerCase();
-  if(inputValue !== "filterall"){
-  return characterList.filter((character) =>
-    character.race.toLowerCase().includes(inputValue)
-  );} else{
+  if (inputValue !== "filterall") {
+    return characterList.filter((character) =>
+      character.race.toLowerCase().includes(inputValue)
+    );
+  } else {
     return characterList;
   }
 }
