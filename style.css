@@ -114,7 +114,7 @@ dialog {
 
 
 /* setting size of images and centers them */
-.grid-item .clickable img{
+.grid-item .clickable img {
   width: 10rem;
   height:10rem;
   object-fit: cover;
