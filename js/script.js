@@ -112,7 +112,7 @@ async function createCharacterClicked(event) {
     updateCharactersGrid();
     form.reset();
     hideErrorMessage();
-    event.target.parentNode.close();
+    // event.target.parentNode.close();
   } else {
     console.log(response.status, response.statusText);
     showErrorMessage("Something went wrong. Please, try again!");
@@ -163,6 +163,13 @@ function deleteCharacterClicked(characterObject) {
   document
     .querySelector("#form-delete-character")
     .addEventListener("submit", ()=>deleteCharacterConfirm(characterObject));
+
+  document.querySelector("#cancelDelete").addEventListener("click", event=>cancelDeleteCharacter(event));
+}
+
+function cancelDeleteCharacter(event){
+  event.preventDefault();
+  document.querySelector("#dialog-delete-character").close();
 }
 
 async function deleteCharacterConfirm(characterObject) {
