@@ -21,25 +21,10 @@ header {
   padding: 10px 20px;
 }
 
-/* Grid search */
-.grid-search {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #fff;
-  border-radius: 5px;
-  padding: 20px;
-  margin: 10px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+h1, h2, h3 {
+  color: #333;
 }
 
-#input-search {
-  padding: 10px;
-  border: none;
-  border-bottom: 2px solid #333;
-  font-size: 1.2rem;
-  width: 90%;
-}
 
 #btn-create-character {
   padding: 10px 20px;
@@ -97,57 +82,52 @@ h2 {
   margin-bottom: 10px;
 }
 
+
+/* setting size of images and centers them */
+.grid-item .clickable img{
+  width: 20rem;
+  height:10rem;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;
+  display:block;
+}
+
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
-
-dialog {
-  width: 500px;
-  padding: 20px;
-  border: none;
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-}
-
-h2 {
-  margin-top: 0;
-  font-size: 1.8rem;
-}
-
-#filter {
-  margin-left: 5px;
-}
-
-#filter label {
-  display: block;
-  margin-top: 10px;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-#filter input {
-  margin-left: 5px;
-}
-
-form button {
-  padding: 10px 20px;
-  background-color: #333;
-}
-
-
-.btn-cancel {
-  background-color: #aaa;
-}
-
-
-
-.radio-container {
-  display: flex;
-  align-items: center;
-  padding: 5px;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  }
   
+.grid-search { grid-area: 1 / 1 / 2 / 5; }
+.grid-sort-filter { grid-area: 2 / 1 / 7 / 2; }
+.grid-characters { grid-area: 2 / 2 / 7 / 8; }
+
+
+@media (min-width: 600px) {
+  .grid-container {
+  grid-template-columns: 1fr 1fr;
+  }
+.grid-item{
+  width: 30vw;
+  }
 }
 
+@media (min-width: 1000px) {
+  .grid-container {
+  grid-template-columns: 1fr 1fr 1fr;
+  }
+.grid-item{
+  width: 20vw;
+  }
+}
+@media (min-width: 1200px) {
+  .grid-container {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .grid-item {
+  width: 15vw;
+  }
+}

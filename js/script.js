@@ -1,5 +1,5 @@
 import { getCharacters, createCharacter, updateCharacter, deleteCharacter } from "./rest-service.js";
-
+import { filterByRace, sortByOption, searchByName } from "./helpers.js";
 
 let characterList;
 
@@ -118,8 +118,7 @@ async function updateCharacterClicked(event) {
   const id = form.getAttribute("data-id");
 
   //puts in data from from passes it to updateCharacter
-  
-  
+
   const response = await updateCharacter(
     id,
     name,
@@ -141,24 +140,22 @@ async function updateCharacterClicked(event) {
     updateCharactersGrid();
   } else {
     document.querySelector("#dialog-failed-to-update").showModal();
+    console.log(response.status, response.statusText);
+    showErrorMessage("Something went wrong. Please, try again!");
   }
 }
-
-
 
 // 4. Som en administrativ bruger vil jeg gerne kunne slette et {item} så det forsvinder fra databasen.
 
 // 5. Som en daglig bruger vil jeg gerne have tydelig feedback på når jeg sletter et {item},
 //  så jeg ved at jeg har fjernet noget fra listen.
 
-
-
-function showDeleteFeedback(message) {
+function showDeleteFeedback() {
   const dialog = document.getElementById("dialog-delete-feedback");
   const dialogMessage = document.getElementById(
     "dialog-delete-feedback-message"
   );
-  dialogMessage.textContent = message;
+  dialogMessage.textContent;
   dialog.showModal();
   setTimeout(closeDialog, 1000);
 
@@ -207,8 +204,12 @@ async function createCharacterClicked(event) {
     document.querySelector("#dialog-create-character").close();
     updateCharactersGrid();
     form.reset();
+    hideErrorMessage();
+    event.target.parentNode.close();
   } else {
-    document.querySelector("#dialog-failed-to-update").showModal();
+    
+    console.log(response.status, response.statusText);
+    showErrorMessage("Something went wrong. Please, try again!");
   }
 }
 
@@ -216,7 +217,6 @@ async function updateCharactersGrid() {
   characterList = await getCharacters();
   showCharacters(characterList);
 }
-
 
 function showCharacters(characterList) {
   document.querySelector("#characters").innerHTML = "";
@@ -229,10 +229,12 @@ function showCharacters(characterList) {
 function showCharacter(characterObject) {
   const html = /*html*/ `
         <article class="grid-item">
+        <div class="clickable">    
             <img src="${characterObject.image}" />
             <h3>Name: ${characterObject.name}</h3>
             <p>Age: ${characterObject.age}</p>
             <p>Race: ${characterObject.race}</p>
+        </div>
             <div class="btns">
                 <button class="btn-delete">Delete</button>
                 <button class="btn-update">Update</button>
@@ -241,7 +243,9 @@ function showCharacter(characterObject) {
     `;
   document.querySelector("#characters").insertAdjacentHTML("beforeend", html);
 
-  const gridItem = document.querySelector("#characters article:last-child");
+  const gridItem = document.querySelector(
+    "#characters article:last-child .clickable"
+  );
 
   gridItem.addEventListener("click", () => {
     showCharacterModal(characterObject);
@@ -279,44 +283,24 @@ function showCharacterModal(characterObject) {
   });
 }
 
-
-
 async function deleteCharacterClicked(characterObject) {
   const response = await deleteCharacter(characterObject);
-    if (response.ok) {
-      updateCharactersGrid();
-    } else {
-      document.querySelector("#dialog-failed-to-update").showModal();
-    }
-}
-
-function searchByName(searchValue) {
-  searchValue = searchValue.toLowerCase().trim();
-  return characterList.filter(checkNames);
-
-  function checkNames(character) {
-    return character.name.toLowerCase().includes(searchValue);
-  }
-}
-
-function sortByOption(sortValue) {
-  if (sortValue === "name") {
-    return characterList.sort((a, b) => a.name.localeCompare(b.name));
-  } else if (sortValue === "age") {
-    return characterList.sort((a, b) => a.age - b.age);
-  } else if (sortValue === "title") {
-    return characterList.sort((a, b) => a.title.localeCompare(b.title));
-  } else if (sortValue === "race") {
-    return characterList.sort((a, b) => a.race.localeCompare(b.race));
-  }
-}
-
-function filterByRace(inputValue) {
-  inputValue = inputValue.toLowerCase();
-  if(inputValue !== "filterall"){
-  return characterList.filter((character) =>
-    character.race.toLowerCase().includes(inputValue)
-  );} else{
+  if (response.ok) {
     updateCharactersGrid();
+    showDeleteFeedback();
+  } else {
+    document.querySelector("#dialog-failed-to-update").showModal();
   }
 }
+
+function showErrorMessage(message) {
+  document.querySelector(".error-message").textContent = message;
+  document.querySelector(".error-message").classList.remove("hide");
+}
+
+function hideErrorMessage() {
+  document.querySelector(".error-message").textContent = "";
+  document.querySelector(".error-message").classList.add("hide");
+}
+
+export {characterList};

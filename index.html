@@ -67,13 +67,13 @@
     <h2>Create new character</h2>
     <form id="form-create-character" method="dialog">
       <label for="name">Name</label>
-      <input type="text" name="name" id="characterName" placeholder="Input Character's name" size="50"/>
+      <input type="text" name="name" id="characterName" placeholder="Input Character's name" size="50" required/>
 
       <label for="race">Race</label>
       <input type="text" name="race"id="race" placeholder="Input Character's race" size="50" />
 
       <label for="image">Image</label>
-      <input type="url" name="image" id="image"placeholder="Input Character's image" size="50"/>
+      <input type="url" name="image" id="image"placeholder="Input Character's image" size="50" required/>
 
       <label for="age">Age</label>
       <input type="number" name="age" id="age" placeholder="Input Character's age" size="50"/>
@@ -106,6 +106,7 @@
       <input type="text" name="weapon" id="weapon" placeholder="Input Character's weapon" size="50"/>
 
       <button class="btn-cancel">Close</button>
+      <p class="error-message hide">Error Message Placeholder</p>
       <button>Create Character</button>
     </form>
 </dialog>
@@ -128,13 +129,13 @@
       <h2>Update Character</h2>
       <form id="form-update-character" method="dialog">
         <label for="name">Name</label>
-        <input type="text" name="name" />
+        <input type="text" name="name" required/>
 
         <label for="race">Race</label>
         <input type="text" name="race" />
 
         <label for="image">Image</label>
-        <input type="url" name="image" />
+        <input type="url" name="image" required/>
 
         <label for="age">Age</label>
         <input type="number" name="age" />
@@ -167,13 +168,9 @@
         <input type="text" name="weapon" />
 
         <button class="btn-cancel">Close</button>
+        <p class="error-message hide">Error Message Placeholder</p>
         <button>Update</button>
       </form>
-    </dialog>
-
-    <dialog id="dialog-failed-to-update">
-      <p>Character Update Failed</p>
-      <button class="btn-cancel">Close</button>
     </dialog>
 
     <script src="js/script.js"type="module"></script>
