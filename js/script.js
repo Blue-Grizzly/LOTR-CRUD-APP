@@ -59,7 +59,7 @@ function cancelUpdate(event) {
   document.querySelector("#dialog-update-character").close();
 }
 
-function cancelCreate(event) {
+function cancelCreate(event){
   event.preventDefault();
   document.querySelector("#dialog-create-character").close();
   document.querySelector("#form-create-character").reset();
