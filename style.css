@@ -76,3 +76,8 @@ p {
     max-width: 342px;
     padding: 1em;
 }
+
+.hide {
+  display: none;
+}
+
