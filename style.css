@@ -12,6 +12,7 @@ body {
 }
 
 /* Header */
+
 header {
   background-color: #97ac67;
   color: #fff;
@@ -19,6 +20,12 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 20px;
 }
 
 /* Grid search */
@@ -32,6 +39,8 @@ header {
   margin: 10px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
+
+
 
 #input-search {
   padding: 10px;
@@ -52,20 +61,6 @@ header {
   transition: background-color 0.3s;
 }
 
-
-h1 {
-  font-size: 2.5rem;
-  font-family: 'Times New Roman', Times, serif;
-  margin-bottom: 20px;
-}
-
-/* Grid layout */
-.grid-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  margin: 20px;
-}
 
 /* Grid sort filter */
 .grid-sort-filter {
@@ -90,6 +85,7 @@ legend {
   max-width: 1200px;
   width: 100%;
 }
+
 
 h2 {
   font-size: 2rem;
