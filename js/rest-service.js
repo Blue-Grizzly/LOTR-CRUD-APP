@@ -8,6 +8,31 @@ async function getCharacters() {
   return prepareData(data);
 }
 
+async function createCharacter(name, race, image, age, birth, culture, death, gender, language, magical, realm, title, weapon) {
+  const newCharacter = {
+    name: name,
+    race: race,
+    image: image,
+    age: age,
+    birth: birth,
+    culture: culture,
+    death: death,
+    gender: gender,
+    language: language,
+    magical: magical,
+    realm: realm,
+    title: title,
+    weapon: weapon,
+  };
+  console.log(newCharacter);
+  const json = JSON.stringify(newCharacter);
+  const response = await fetch(`${endpoint}/characters.json`, {
+    method: "POST",
+    body: json,
+  });
+  return response;
+}
+
 //  Updates an existing character
 async function updateCharacter(
   id,
@@ -56,31 +81,6 @@ async function deleteCharacter(characterObject) {
   const id = characterObject.id;
   const response = await fetch(`${endpoint}/characters/${id}.json`, {
     method: "DELETE",
-  });
-    return response;
-}
-
-async function createCharacter(name, race, image, age, birth, culture, death, gender, language, magical, realm, title, weapon) {
-  const newCharacter = {
-    name: name,
-    race: race,
-    image: image,
-    age: age,
-    birth: birth,
-    culture: culture,
-    death: death,
-    gender: gender,
-    language: language,
-    magical: magical,
-    realm: realm,
-    title: title,
-    weapon: weapon,
-  };
-  console.log(newCharacter);
-  const json = JSON.stringify(newCharacter);
-  const response = await fetch(`${endpoint}/characters.json`, {
-    method: "POST",
-    body: json,
   });
     return response;
 }

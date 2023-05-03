@@ -1,4 +1,9 @@
-import { getCharacters, createCharacter, updateCharacter, deleteCharacter } from "./rest-service.js";
+import {
+  getCharacters,
+  createCharacter,
+  updateCharacter,
+  deleteCharacter,
+} from "./rest-service.js";
 import { filterByRace, sortByOption, searchByName } from "./helpers.js";
 
 let characterList;
@@ -18,13 +23,11 @@ function initApp() {
     .querySelector("#form-update-character .btn-cancel")
     .addEventListener("click", cancelUpdate);
 
-document
-  .querySelector("#form-create-character .btn-cancel")
-  .addEventListener("click", cancelCreate);
-
   document
     .querySelector("#form-create-character .btn-cancel")
-    .addEventListener("click", closeCreateCharacterModal);
+    .addEventListener("click", cancelCreate);
+
+  
   document
     .querySelector("#form-update-character")
     .addEventListener("submit", updateCharacterClicked);
@@ -57,9 +60,14 @@ function closeCreateCharacterModal(event) {
   document.querySelector("#dialog-create-character").close();
 }
 
+function cancelCreate(event) {
+  event.preventDefault();
+  document.querySelector("#dialog-create-character").close();
+}
+
 function cancelUpdate(event) {
   event.preventDefault();
-  console.log("Cancel button clicked!");
+  console.log("Cancel update button clicked!");
   document.querySelector("#dialog-update-character").close();
 }
 
@@ -140,6 +148,7 @@ async function updateCharacterClicked(event) {
   if (response.ok) {
     document.querySelector("#dialog-update-character").close();
     updateCharactersGrid();
+    console.log("Update Character button clicked!");
   } else {
     console.log(response.status, response.statusText);
     showErrorMessage("Something went wrong. Please, try again!");
@@ -154,9 +163,7 @@ async function updateCharacterClicked(event) {
 
 function showDeleteFeedback() {
   const dialog = document.getElementById("dialog-delete-feedback");
-  const dialogMessage = document.getElementById(
-    "dialog-delete-feedback-message"
-  );
+  const dialogMessage = document.getElementById("dialog-delete-feedback-message");
   dialogMessage.textContent;
   dialog.showModal();
   setTimeout(closeDialog, 1000);
@@ -168,7 +175,7 @@ function showDeleteFeedback() {
 
 function showCreateCharacterDialog() {
   document.querySelector("#dialog-create-character").showModal();
-  console.log("Create New Character clicked!");
+  console.log("Create New Character button clicked!");
 }
 
 async function createCharacterClicked(event) {
@@ -304,4 +311,4 @@ function hideErrorMessage() {
   document.querySelector(".error-message").classList.add("hide");
 }
 
-export {characterList};
+export { characterList };
