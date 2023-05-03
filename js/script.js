@@ -18,9 +18,9 @@ function initApp() {
     .querySelector("#form-update-character .btn-cancel")
     .addEventListener("click", cancelUpdate);
 
-  document
-    .querySelector("#dialog-failed-to-update .btn-cancel")
-    .addEventListener("click", closeUpdateFailedDialog);
+document
+  .querySelector("#form-create-character .btn-cancel")
+  .addEventListener("click", cancelCreate);
 
   document
     .querySelector("#form-create-character .btn-cancel")
@@ -53,17 +53,19 @@ function initApp() {
 
 function closeCreateCharacterModal(event) {
   event.preventDefault();
-  console.log("cancel CreateCharacter Clicked");
+  console.log("Cancel Create Character clicked!");
   document.querySelector("#dialog-create-character").close();
 }
-function closeUpdateFailedDialog() {
-  console.log("Close failed to update clicked!");
-  document.querySelector("#dialog-failed-to-update").close();
-}
+
 function cancelUpdate(event) {
   event.preventDefault();
   console.log("Cancel button clicked!");
   document.querySelector("#dialog-update-character").close();
+}
+
+function cancelCreate(event){
+  event.preventDefault();
+  document.querySelector("#dialog-create-character").close();
 }
 
 function updateClicked(characterObject) {
@@ -93,7 +95,7 @@ function updateClicked(characterObject) {
   //shows the update form
   document.querySelector("#dialog-update-character").showModal();
 
-  console.log("Update button clicked");
+  console.log("Update button clicked!");
 }
 // }
 
@@ -139,7 +141,9 @@ async function updateCharacterClicked(event) {
     document.querySelector("#dialog-update-character").close();
     updateCharactersGrid();
   } else {
-    document.querySelector("#dialog-failed-to-update").showModal();
+    console.log(response.status, response.statusText);
+    showErrorMessage("Something went wrong. Please, try again!");
+    event.target.parentNode.close();
   }
 }
 
@@ -203,8 +207,9 @@ async function createCharacterClicked(event) {
     updateCharactersGrid();
     form.reset();
     hideErrorMessage();
+    event.target.parentNode.close();
   } else {
-    document.querySelector("#dialog-failed-to-update").showModal();
+    console.log(response.status, response.statusText);
     showErrorMessage("Something went wrong. Please, try again!");
   }
 }
