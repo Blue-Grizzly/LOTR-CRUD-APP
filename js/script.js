@@ -246,7 +246,7 @@ function showCharacter(characterObject) {
         <article class="grid-item">
         <div class="clickable">    
             <img src="${characterObject.image}" />
-            <h3>Name: ${characterObject.name}</h3>
+            <h3><b>${characterObject.name}</b></h3>
             <p>Weapon: ${characterObject.weapon}</p>
             <p>Race: ${characterObject.race}</p>
             <p>Title: ${characterObject.title}</p>
