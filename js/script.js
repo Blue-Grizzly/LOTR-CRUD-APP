@@ -18,9 +18,9 @@ function initApp() {
     .querySelector("#form-update-character .btn-cancel")
     .addEventListener("click", cancelUpdate);
 
-  document
-    .querySelector("#dialog-failed-to-update .btn-cancel")
-    .addEventListener("click", closeUpdateFailedDialog);
+document
+  .querySelector("#form-create-character .btn-cancel")
+  .addEventListener("click", cancelCreate);
 
   document
     .querySelector("#form-create-character .btn-cancel")
@@ -56,14 +56,16 @@ function closeCreateCharacterModal(event) {
   console.log("cancel CreateCharacter Clicked");
   document.querySelector("#dialog-create-character").close();
 }
-function closeUpdateFailedDialog() {
-  console.log("Close failed to update clicked!");
-  document.querySelector("#dialog-failed-to-update").close();
-}
+
 function cancelUpdate(event) {
   event.preventDefault();
   console.log("Cancel button clicked!");
   document.querySelector("#dialog-update-character").close();
+}
+
+function cancelCreate(event){
+  event.preventDefault();
+  document.querySelector("#dialog-create-character").close();
 }
 
 function updateClicked(characterObject) {
