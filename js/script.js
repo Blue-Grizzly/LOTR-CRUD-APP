@@ -48,16 +48,15 @@ function initApp() {
     );
 }
 
+function cancelCreate(event) {
+  event.preventDefault();
+  document.querySelector("#dialog-create-character").close();
+}
+
 function cancelUpdate(event) {
   event.preventDefault();
   console.log("Cancel update button clicked!");
   document.querySelector("#dialog-update-character").close();
-}
-
-function cancelCreate(event) {
-  event.preventDefault();
-  document.querySelector("#dialog-create-character").close();
-  document.querySelector("#form-create-character").reset();
 }
 
 function updateClicked(characterObject) {
@@ -90,6 +89,35 @@ function updateClicked(characterObject) {
   console.log("Update button clicked!");
 }
 // }
+
+async function createCharacterClicked(event) {
+  event.preventDefault();
+  const form = document.querySelector("#form-create-character");
+  const name = form.name.value;
+  const race = form.race.value;
+  const image = form.image.value;
+  const age = form.age.value;
+  const birth = form.birth.value;
+  const culture = form.culture.value;
+  const death = form.death.value;
+  const gender = form.gender.value;
+  const language = form.language.value;
+  const magical = form.magical.value;
+  const realm = form.realm.value;
+  const title = form.title.value;
+  const weapon = form.weapon.value;
+  const response = await createCharacter(name, race, image, age, birth, culture, death, gender, language, magical, realm, title, weapon);
+  if (response.ok) {
+    document.querySelector("#dialog-create-character").close();
+    updateCharactersGrid();
+    form.reset();
+    hideErrorMessage();
+    event.target.parentNode.close();
+  } else {
+    console.log(response.status, response.statusText);
+    showErrorMessage("Something went wrong. Please, try again!");
+  }
+}
 
 async function updateCharacterClicked(event) {
   event.preventDefault();
@@ -125,6 +153,16 @@ async function updateCharacterClicked(event) {
   }
 }
 
+async function deleteCharacterClicked(characterObject) {
+  const response = await deleteCharacter(characterObject);
+  if (response.ok) {
+    updateCharactersGrid();
+    showDeleteFeedback();
+  } else {
+    document.querySelector("#dialog-failed-to-update").showModal();
+  }
+}
+
 // 4. Som en administrativ bruger vil jeg gerne kunne slette et {item} så det forsvinder fra databasen.
 
 // 5. Som en daglig bruger vil jeg gerne have tydelig feedback på når jeg sletter et {item},
@@ -147,35 +185,6 @@ function showDeleteFeedback() {
 function showCreateCharacterDialog() {
   document.querySelector("#dialog-create-character").showModal();
   console.log("Create New Character button clicked!");
-}
-
-async function createCharacterClicked(event) {
-  event.preventDefault();
-  const form = document.querySelector("#form-create-character");
-  const name = form.name.value;
-  const race = form.race.value;
-  const image = form.image.value;
-  const age = form.age.value;
-  const birth = form.birth.value;
-  const culture = form.culture.value;
-  const death = form.death.value;
-  const gender = form.gender.value;
-  const language = form.language.value;
-  const magical = form.magical.value;
-  const realm = form.realm.value;
-  const title = form.title.value;
-  const weapon = form.weapon.value;
-  const response = await createCharacter(name, race, image, age, birth, culture, death, gender, language, magical, realm, title, weapon);
-  if (response.ok) {
-    document.querySelector("#dialog-create-character").close();
-    updateCharactersGrid();
-    form.reset();
-    hideErrorMessage();
-    event.target.parentNode.close();
-  } else {
-    console.log(response.status, response.statusText);
-    showErrorMessage("Something went wrong. Please, try again!");
-  }
 }
 
 async function updateCharactersGrid() {
@@ -250,7 +259,7 @@ function showCharacterModal(characterObject) {
   document.body.appendChild(modal);
   modal.showModal();
   modal.addEventListener("click", () => {
-    modal.remove();
+  modal.remove();
   });
 }
 
