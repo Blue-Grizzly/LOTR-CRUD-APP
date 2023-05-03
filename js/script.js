@@ -140,6 +140,8 @@ async function updateCharacterClicked(event) {
     updateCharactersGrid();
   } else {
     document.querySelector("#dialog-failed-to-update").showModal();
+    console.log(response.status, response.statusText);
+    showErrorMessage("Something went wrong. Please, try again!");
   }
 }
 
@@ -203,8 +205,10 @@ async function createCharacterClicked(event) {
     updateCharactersGrid();
     form.reset();
     hideErrorMessage();
+    event.target.parentNode.close();
   } else {
-    document.querySelector("#dialog-failed-to-update").showModal();
+    
+    console.log(response.status, response.statusText);
     showErrorMessage("Something went wrong. Please, try again!");
   }
 }
