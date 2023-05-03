@@ -24,16 +24,15 @@ function closeCreateCharacterModal(event) {
   document.querySelector("#dialog-create-character").close();
 }
 
+function cancelCreate(event) {
+  event.preventDefault();
+  document.querySelector("#dialog-create-character").close();
+}
 
 function cancelUpdate(event) {
   event.preventDefault();
   console.log("Cancel update button clicked!");
   document.querySelector("#dialog-update-character").close();
-}
-
-function cancelCreate(event) {
-  event.preventDefault();
-  document.querySelector("#dialog-create-character").close();
 }
 
 function updateClicked(characterObject) {
