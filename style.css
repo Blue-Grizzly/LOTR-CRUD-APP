@@ -1,114 +1,170 @@
-:root {
-  --text-color-dark: red;
-  font-size: 62.5%;
+/* Set basic styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f5f5f5;
+}
+
+/* Header */
+header {
+  background-color: #97ac67;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+/* Grid search */
+.grid-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+#input-search {
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #333;
+  font-size: 1.2rem;
+  width: 90%;
+}
+
+#btn-create-character {
+  padding: 10px 20px;
+  background-color: #bdd076;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+
+h1 {
+  font-size: 2.5rem;
+  font-family: 'Times New Roman', Times, serif;
+  margin-bottom: 20px;
+}
+
+/* Grid layout */
+.grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin: 20px;
+}
+
+/* Grid sort filter */
+.grid-sort-filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+legend {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+#sortbyselect {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.grid-characters {
+  margin: 30px auto 0;
+  max-width: 1200px;
+  width: 100%;
+}
+
+h2 {
+  font-size: 2rem;
   margin: 0;
-}
-
-h1,
-h2,
-h3 {
-  color: #333;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-p {
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
+  margin-bottom: 10px;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1em;
-  padding: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 
-.grid-item {
-  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
-  padding: 1.5em;
+dialog {
+  width: 500px;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
-
-/* setting size of images and centers them */
-.grid-item .clickable img{
-  width: 20rem;
-  height:10rem;
-  object-fit: cover;
-  margin-left: auto;
-  margin-right: auto;
-  display:block;
+h2 {
+  margin-top: 0;
+  font-size: 1.8rem;
 }
 
-.grid-layout {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(6, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+#filter {
+  margin-left: 5px;
 }
 
-.grid-search {
-  grid-area: 1 / 1 / 2 / 5;
+#filter label {
+  display: block;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
-.grid-sort-filter {
-  grid-area: 2 / 1 / 7 / 2;
+
+#filter input {
+  margin-left: 5px;
 }
-.grid-characters {
-  grid-area: 2 / 2 / 7 / 8;
-}
+
+form button {
+  padding: 10px 20px;
+  background-color: #333;
+ 
+
+  
+.grid-search { grid-area: 1 / 1 / 2 / 5; }
+.grid-sort-filter { grid-area: 2 / 1 / 7 / 2; }
+.grid-characters { grid-area: 2 / 2 / 7 / 8; }
+
 
 @media (min-width: 600px) {
   .grid-container {
-    grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   }
-  .grid-item {
-    width: 30vw;
+.grid-item{
+  width: 30vw;
   }
 }
 
 @media (min-width: 1000px) {
   .grid-container {
-    grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   }
-  .grid-item {
-    width: 20vw;
+.grid-item{
+  width: 20vw;
   }
 }
 @media (min-width: 1200px) {
   .grid-container {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   }
   .grid-item {
-    width: 15vw;
+  width: 15vw;
   }
 }
-
-.error-message {
-  background-color: rgb(255, 121, 121);
-  color: var(--text-color-dark);
-  margin: 1em auto;
-  width: 100%;
-  max-width: 342px;
-  padding: 1em;
-}
-
-input:invalid {
-  border: 2px solid red;
-}
-
-input:valid {
-  border: 2px solid green;
-}
-
-
-.hide {
-  display: none;
-}
-

@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LOTR</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="shortcut icon" href="#" type="image/x-icon">
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LOTR</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+  </head>
   <body>
     <header>
-      <h3>The Lord of the Rings App</h3>
+      <h1>The Lord of the Rings App</h1>
+      <section class="grid-layout">
+        <section class="grid-search" id="search">
+          <form id="searchbyname">
+            <input type="search" id="input-search" placeholder="Search by name">
+          </form>
+        </section>
+      </section>
     </header>
-  <main>
-    <section class="grid-layout">
-      <section class="grid-search" id="search">
-        <form id="searchbyname">
-          <input type="search" id="input-search" placeholder="Search by name">
-        </form>
+    <main style="margin-top: 20px;"> <!-- Add margin to the top of the main element -->
+      <section>
         <button id="btn-create-character">Create character</button>
       </section>
+    </main>
+  </body>
+</html>
+
 
       <section id="sort" class="grid-sort-filter">
         <legend for="sortby">Sort by:</legend>
@@ -34,22 +41,16 @@
       <br>
 
       <section id="filter">
-        <legend for="filterby">Filter by</legend>
-        <form id="filterby" name="filterby">
-          <label for="filterbyelf">Elves</label>
-          <input type="radio" name="filterby" id="filterbyelf" value="elf"><br>
-          <label for="filterbymen">Men</label>
-          <input type="radio" name="filterby" id="filterbymen" value="men"><br>
-          <label for="filterbyorc">Orcs</label>
-          <input type="radio" name="filterby" id="filterbyorc" value="orc"><br>
-          <label for="filterbyhobbit">Hobbits</label>
-          <input type="radio" name="filterby" id="filterbyhobbit" value="hobbit"><br>
-          <label for="filterbydwarf">Dwarves</label>
-          <input type="radio" name="filterby" id="filterbydwarf" value="dwarf"><br>
-          <label for="filterbyainur">Ainur</label>
-          <input type="radio" name="filterby" id="filterbyainur" value="ainur"><br>
-          <label for="filterall">No filter</label>
-          <input type="radio" name="filterby" id="filterall" value="filterall">
+        <legend for="filterby">Filter by:</legend>
+        <form id="filterby" name="filterby" >
+          <label for="filterbyelf">Elves <input type="radio" name="filterby" id="filterbyelf" value="elf"><br></label>
+          <label for="filterbymen">Men <input type="radio" name="filterby" id="filterbymen" value="men"><br></label>
+          <label for="filterbyorc">Orcs<input type="radio" name="filterby" id="filterbyorc" value="orc"><br></label>
+          <label for="filterbyhobbit">Hobbits<input type="radio" name="filterby" id="filterbyhobbit" value="hobbit"><br></label>
+          <label for="filterbydwarf">Dwarves <input type="radio" name="filterby" id="filterbydwarf" value="dwarf"><br></label>
+          <label for="filterbyainur">Ainur <input type="radio" name="filterby" id="filterbyainur" value="ainur"><br></label>
+          <label for="filterall">No filter<input type="radio" name="filterby" id="filterall" value="filterall"></label>
+          
         </form>
       </section>
     </section>
