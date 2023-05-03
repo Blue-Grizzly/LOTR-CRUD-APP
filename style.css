@@ -19,7 +19,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  max-height: 10vh;
 }
 
 h1 {
@@ -208,6 +208,9 @@ footer {
   .grid-container {
       grid-template-columns: 1fr 1fr;
   }
+  .grid-item{
+    width: 40vw;
+  }
 }
 
 @media (min-width: 992px) {
@@ -218,6 +221,9 @@ footer {
 @media (min-width: 1200px) {
   .grid-container {
       grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .grid-item{
+    width: 20vw;
   }
 }
 
