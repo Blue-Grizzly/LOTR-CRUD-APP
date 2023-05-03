@@ -221,7 +221,7 @@ function showCharacterModal(characterObject) {
   document.body.appendChild(modal);
   modal.showModal();
   modal.addEventListener("click", () => {
-    modal.remove();
+  modal.remove();
   });
 }
 
