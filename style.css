@@ -123,37 +123,6 @@ dialog {
   display:block;
 }
 
-h2 {
-  margin-top: 0;
-  font-size: 1.8rem;
-}
-
-#filter {
-  margin-left: 5px;
-}
-
-#filter label {
-  display: block;
-  margin-top: 10px;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-#filter input {
-  margin-left: 5px;
-}
-
-form button {
-  padding: 10px 20px;
-  background-color: #333;
-}
-
-  
-.grid-search { grid-area: 1 / 1 / 2 / 5; }
-.grid-sort-filter { grid-area: 2 / 1 / 7 / 2; }
-.grid-characters { grid-area: 2 / 2 / 7 / 8; }
-
-
 @media (min-width: 600px) {
   .grid-container {
   grid-template-columns: 1fr 1fr;
@@ -178,4 +147,248 @@ form button {
   .grid-item {
   width: 15vw;
   }
+}
+
+.error-message {
+  background-color: rgb(255, 121, 121);
+  color: var(--text-color-dark);
+  margin: 1em auto;
+  width: 100%;
+  max-width: 342px;
+  padding: 1em;
+}
+
+input:invalid {
+  border: 2px solid red;
+}
+
+input:valid {
+  border: 2px solid green;
+}
+
+
+.hide {
+  display: none;
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+
+h2 {
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  text-align: center;
+}
+
+h3 {
+  font-weight: 500;
+  letter-spacing: 0.1px;
+}
+
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- header styling ---------- */
+header {
+  padding: 1em;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+}
+
+/* ---------- footer styling ---------- */
+
+footer {
+  padding: 1em;
+  text-align: center;
+}
+
+
+/* ---------- grid container styling ---------- */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  padding: 1em;
+}
+
+@media (min-width: 600px) {
+  .grid-container {
+      grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid-container {
+      grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (min-width: 1200px) {
+  .grid-container {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+/* ---------- grid item styling ---------- */
+
+.grid-item {
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
+  padding: 1.5em;
+  transition: 0.5s;
+  animation: fadeIn 0.5s;
+  position: relative;
+}
+
+.grid-item:hover {
+  box-shadow: 0 8px 16px 0 black
+}
+
+.grid-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.grid-item p {
+  margin: 0.3em 0;
+  padding: 0 0 3em 0;
+}
+
+.grid-item h3:first-letter,
+.grid-item p:first-letter {
+  text-transform: uppercase;
+}
+
+/* ---------- buttons in grid container ---------- */
+
+.grid-container .btns {
+  padding: 1em 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1em;
+  position: absolute;
+  bottom: 1.5em;
+  left: 1.5em;
+  right: 1.5em;
+}
+
+.grid-container .btns button {
+  width: 100%;
+}
+
+/* ---------- form styling ---------- */
+/* input form styling */
+form {
+  margin: 2em auto 0;
+  padding: 1em 1em 2em;
+  text-align: center;
+}
+
+button {
+  font-weight: 300;
+  font-size: 1em;
+  text-align: center;
+  cursor: pointer;
+  border: 2px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.5em 1em;
+  width: 100%;
+  max-width: 380px;
+}
+
+header button {
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
+}
+
+input {
+  margin: 1em auto;
+  width: 100%;
+  max-width: 350px;
+  padding: 1em;
+  border: 2px solid ;
+  display: block;
+}
+
+.btn-cancel {
+  margin: 0 0 1em;
+}
+
+select {
+  border: none;
+  padding: 1em;
+  margin: 1em;
+  max-width: 350px;
+}
+
+/* ---------- dialog styling ---------- */
+
+dialog {
+  width: 65vw;
+  padding: 2em 1em;
+}
+
+dialog::backdrop {
+  background: rgba(92, 92, 92, 0.8);
+}
+
+dialog h4 {
+  margin-bottom: 0;
+}
+dialog ul {
+  margin: 0.5em 0 1em;
+  padding-inline-start: 1.5em;
+}
+dialog p {
+  text-align: center;
+}
+
+/* ---------- tools grid styling ---------- */
+
+.tools-grid {
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
+  padding: 1.5em;
+  padding-top: 25vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  justify-content:start;
+  justify-items: stretch;
+}
+@media (min-width: 600px) {
+  .tools-grid {
+      grid-template-columns: auto auto;
+      margin: 1em;
+  }
+}
+
+
+.tools-grid input {
+  width: 350px;
+  max-width: 100%;
+  display: inline;
+}
+
+.tools-grid form{
+  padding: 0;
+  margin: 0;
 }

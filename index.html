@@ -10,105 +10,94 @@
   </head>
   <body>
     <header>
-      <h1>The Lord of the Rings App</h1>
-      <section class="grid-layout">
-        <section class="grid-search" id="search">
-          <form id="searchbyname">
-            <input type="search" id="input-search" placeholder="Search by name">
-          </form>
-        </section>
-      </section>
+      <h3>The Lord of the Rings App</h3>        
+      <button id="btn-create-character">Create character</button>
+      <form id="searchbyname">
+        <input type="search" id="input-search" placeholder="Search by name">
+      </form>
     </header>
-    <main style="margin-top: 20px;"> <!-- Add margin to the top of the main element -->
-      <section>
-        <button id="btn-create-character">Create New Character</button>
-      </section>
-    </main>
-  </body>
-</html>
+  <main>
+    <div class="tools-grid">
+        <label for="sortby">Sort by:        
+          <form id="sortby" name="sortby">
+            <select name="sortbyselect" id="sortbyselect">
+              <option value="name">Name</option>
+              <option value="age">Age</option>
+              <option value="title">Title</option>
+              <option value="race">Race</option>
+            </select>
+          </form>
+        </label>
 
+        <label for="filterby">Filter by:
+           <form id="filterby" name="filterby">
+            <select>
+              <option value="elf">Elves</option>
+              <option value="men">Men</option>
+              <option value="orc">Orcs</option>
+              <option value="hobbit">Hobbits</option>
+              <option value="ainur">Ainur</option>
+              <option value="dwarf">Dwarves</option>
+              <option value="filterall">All</option>
+            </select>
+          </form>
+        </label>
 
-      <section id="sort" class="grid-sort-filter">
-        <legend for="sortby">Sort by:</legend>
-        <form id="sortby" name="sortby">
-          <select name="sortbyselect" id="sortbyselect">
-            <option value="name">Name</option>
-            <option value="age">Age</option>
-            <option value="title">Title</option>
-            <option value="race">Race</option>
-          </select>
-        </form>
-      <br>
+      </div>
 
-      <section id="filter">
-        <legend for="filterby">Filter by:</legend>
-        <form id="filterby" name="filterby" >
-          <label for="filterbyelf">Elves <input type="radio" name="filterby" id="filterbyelf" value="elf"><br></label>
-          <label for="filterbymen">Men <input type="radio" name="filterby" id="filterbymen" value="men"><br></label>
-          <label for="filterbyorc">Orcs<input type="radio" name="filterby" id="filterbyorc" value="orc"><br></label>
-          <label for="filterbyhobbit">Hobbits<input type="radio" name="filterby" id="filterbyhobbit" value="hobbit"><br></label>
-          <label for="filterbydwarf">Dwarves <input type="radio" name="filterby" id="filterbydwarf" value="dwarf"><br></label>
-          <label for="filterbyainur">Ainur <input type="radio" name="filterby" id="filterbyainur" value="ainur"><br></label>
-          <label for="filterall">No filter<input type="radio" name="filterby" id="filterall" value="filterall"></label>
-          
-        </form>
-      </section>
-    </section>
-      <section class="grid-characters">
         <h2>Characters</h2>
-        <section id="characters" class="grid-container">
-
-        </section>
-      </section>
-    </sec>
+        <section id="characters" class="grid-container"></section>
 </main>
 
-    <dialog id="dialog-create-character">
-    <h2>Create new character</h2>
-    <form id="form-create-character" method="dialog">
-      <label for="name">Name</label>
-      <input type="text" name="name" id="characterName" placeholder="Input Character's name" size="50" required/>
+  <dialog id="dialog-create-character">
+    <div class="create-dialog-container">
+      <h2 class="create-dialog-head">Create new character</h2>
+      <form id="form-create-character" method="dialog" class="create-dialog-form">
+        <label for="name">Name
+          <input type="text" name="name" id="characterName" placeholder="Input Character's name" size="50" required/>
+        </label>
+        
+        <label for="race">Race <input type="text" name="race"id="race" placeholder="Input Character's race" size="50" />
+        </label>
 
-      <label for="race">Race</label>
-      <input type="text" name="race"id="race" placeholder="Input Character's race" size="50" />
+        <label for="image">Image <input type="url" name="image" id="image"placeholder="Input Character's image" size="50" required/>
+        </label>
 
-      <label for="image">Image</label>
-      <input type="url" name="image" id="image"placeholder="Input Character's image" size="50" required/>
+        <label for="age">Age <input type="number" name="age" id="age" placeholder="Input Character's age" size="50"/>
+        </label>
 
-      <label for="age">Age</label>
-      <input type="number" name="age" id="age" placeholder="Input Character's age" size="50"/>
+        <label for="birth">Year of Birth <input type="text" name="birth" id="birth" placeholder="Input Character's year of birth" size="50"/>
+        </label>
 
-      <label for="birth">Year of Birth</label>
-      <input type="text" name="birth" id="birth" placeholder="Input Character's year of birth" size="50"/>
+        <label for="culture">Culture <input type="number" name="culture" id="culture" placeholder="Input Character's culture" size="50"/>
+        </label>
 
-      <label for="culture">Culture</label>
-      <input type="number" name="culture" id="culture" placeholder="Input Character's culture" size="50"/>
+        <label for="death">Date of Death <input type="text" name="death" id="death" placeholder="Input Character's year of death" size="50"/>
+        </label>
 
-      <label for="death">Date of Death</label>
-      <input type="text" name="death" id="death" placeholder="Input Character's year of death" size="50"/>
+        <label for="gender">Gender <input type="text" name="gender" id="gender" placeholder="Input Character's gender" size="50"/>
+        </label>
 
-      <label for="gender">Gender</label>
-      <input type="text" name="gender" id="gender" placeholder="Input Character's gender" size="50"/>
+        <label for="language">Language <input type="text" name="language" id="language" placeholder="Input Character's language" size="50"/>
+        </label>
 
-      <label for="language">Language</label>
-      <input type="text" name="language" id="language" placeholder="Input Character's language" size="50"/>
+        <label for="magical">Magic <input type="text" name="magical" id="magical" placeholder="Input if character has magical abilities" size="50"/>
+        </label>
 
-      <label for="magical">Magic</label>
-      <input type="text" name="magical" id="magical" placeholder="Input if character has magical abilities" size="50"/>
+        <label for="realm">Realm <input type="text" name="realm" id="realm" placeholder="Input Character's Realm of residence" size="50"/>
+        </label>
 
-      <label for="realm">Realm</label>
-      <input type="text" name="realm" id="realm" placeholder="Input Character's Realm of residence" size="50"/>
+        <label for="title">Title <input type="text" name="title" id="title" placeholder="Input Character's title" size="50"/>
+        </label>
 
-      <label for="title">Title</label>
-      <input type="text" name="title" id="title" placeholder="Input Character's title" size="50"/>
+        <label for="weapon">Weapon <input type="text" name="weapon" id="weapon" placeholder="Input Character's weapon" size="50"/>
+        </label>
 
-      <label for="weapon">Weapon</label>
-      <input type="text" name="weapon" id="weapon" placeholder="Input Character's weapon" size="50"/>
-
-      <button class="btn-cancel">Close</button>
-      <p class="error-message hide">Error Message Placeholder</p>
-      <button>Create Character</button>
-    </form>
+        <button class="btn-cancel">Close</button>
+        <p class="error-message hide">Error Message Placeholder</p>
+        <button>Create Character</button>
+      </form>
+  </div>
 </dialog>
 
                 <!-- dialog - delete post -->
