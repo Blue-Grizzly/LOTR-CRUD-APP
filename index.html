@@ -49,6 +49,7 @@
         <section id="characters" class="grid-container"></section>
 </main>
 
+<<<<<<< Updated upstream
   <dialog id="dialog-create-character">
     <div class="create-dialog-container">
       <h2 class="create-dialog-head">Create new character</h2>
@@ -59,12 +60,24 @@
         
         <label for="race">Race <input type="text" name="race"id="race" placeholder="Input Character's race" size="50" />
         </label>
+=======
+    <dialog id="dialog-create-character">
+    <h2>Create new character</h2>
+    <form id="form-create-character" method="dialog">
+      <label for="name">Name</label>
+      <input type="text" name="name" id="characterName" placeholder="Input Character's name" size="50"/>
+>>>>>>> Stashed changes
 
         <label for="image">Image <input type="url" name="image" id="image"placeholder="Input Character's image" size="50" required/>
         </label>
 
+<<<<<<< Updated upstream
         <label for="age">Age <input type="number" name="age" id="age" placeholder="Input Character's age" size="50"/>
         </label>
+=======
+      <label for="image">Image</label>
+      <input type="url" name="image" id="image"placeholder="Input Character's image" size="50"/>
+>>>>>>> Stashed changes
 
         <label for="birth">Year of Birth <input type="text" name="birth" id="birth" placeholder="Input Character's year of birth" size="50"/>
         </label>
@@ -93,11 +106,20 @@
         <label for="weapon">Weapon <input type="text" name="weapon" id="weapon" placeholder="Input Character's weapon" size="50"/>
         </label>
 
+<<<<<<< Updated upstream
         <button class="btn-cancel">Close</button>
         <p class="error-message hide">Error Message Placeholder</p>
         <button>Create Character</button>
       </form>
   </div>
+=======
+      <label for="weapon">Weapon</label>
+      <input type="text" name="weapon" id="weapon" placeholder="Input Character's weapon" size="50"/>
+
+      <button class="btn-cancel">Close</button>
+      <button>Create Character</button>
+    </form>
+>>>>>>> Stashed changes
 </dialog>
 
                 <!-- dialog - delete post -->
@@ -118,13 +140,13 @@
       <h2>Update Character</h2>
       <form id="form-update-character" method="dialog">
         <label for="name">Name</label>
-        <input type="text" name="name" required/>
+        <input type="text" name="name" />
 
         <label for="race">Race</label>
         <input type="text" name="race" />
 
         <label for="image">Image</label>
-        <input type="url" name="image" required/>
+        <input type="url" name="image" />
 
         <label for="age">Age</label>
         <input type="number" name="age" />
@@ -157,9 +179,13 @@
         <input type="text" name="weapon" />
 
         <button class="btn-cancel">Close</button>
-        <p class="error-message hide">Error Message Placeholder</p>
         <button>Update</button>
       </form>
+    </dialog>
+
+    <dialog id="dialog-failed-to-update">
+      <p>Character Update Failed</p>
+      <button class="btn-cancel">Close</button>
     </dialog>
 
     <script src="js/script.js"type="module"></script>
