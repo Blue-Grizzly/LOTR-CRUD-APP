@@ -219,18 +219,15 @@ function showCharacter(characterObject) {
 }
 
 function deleteCharacterClicked(characterObject) {
+  console.log(characterObject);
   document.querySelector("#dialog-delete-character-title").textContent =
-    characterObject.title;
-
-  document
-    .querySelector("#form-delete-character")
-    .setAttribute("data-id", characterObject.id);
+    characterObject.name;
 
   document.querySelector("#dialog-delete-character").showModal();
   
   document
     .querySelector("#form-delete-character")
-    .addEventListener("submit", deleteCharacterConfirm);
+    .addEventListener("submit", ()=>deleteCharacterConfirm(characterObject));
 }
 
 function showCharacterModal(characterObject) {
@@ -257,13 +254,8 @@ function showCharacterModal(characterObject) {
   });
 }
 
-async function deleteCharacterConfirm() {
-  const id = document
-    .querySelector("#form-delete-character")
-    .getAttribute("data-id");
-
-
-  const response = await deleteCharacter(id);
+async function deleteCharacterConfirm(characterObject) {
+  const response = await deleteCharacter(characterObject);
 
 
   if (response.ok) {

@@ -34,9 +34,9 @@ function filterByRace(inputValue) {
 function prepareData(dataObject) {
   const characterArray = [];
   for (const key in dataObject) {
-    const character = dataObject[key];
-    character.id = key;
-    characterArray.push(character);
+    const characterObject = dataObject[key];
+    characterObject.id = key;
+    characterArray.push(characterObject);
   }
   console.log(characterArray);
   return characterArray;
