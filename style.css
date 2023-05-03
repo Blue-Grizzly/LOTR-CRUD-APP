@@ -66,8 +66,7 @@ h2 {
 
 
 dialog {
-  width: 500px;
-  padding: 20px;
+
   border: none;
   border-radius: 10px;
   background-color: #fff;
@@ -313,6 +312,7 @@ select {
 dialog {
   width: 65vw;
   padding: 2em 1em;
+  margin: auto;
 }
 
 dialog::backdrop {
