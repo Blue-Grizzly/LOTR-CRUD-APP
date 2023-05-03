@@ -8,18 +8,16 @@ async function getCharacters() {
   return prepareData(data);
 }
 
-async function createCharacter(name, race, image, age, birth, culture, death, gender, language, magical, realm, title, weapon) {
+async function createCharacter(name, race, image, birth, culture, death, gender, language, realm, title, weapon) {
   const newCharacter = {
     name: name,
     race: race,
     image: image,
-    age: age,
     birth: birth,
     culture: culture,
     death: death,
     gender: gender,
     language: language,
-    magical: magical,
     realm: realm,
     title: title,
     weapon: weapon,
@@ -39,13 +37,11 @@ async function updateCharacter(
   name,
   race,
   image,
-  age,
   birth,
   culture,
   death,
   gender,
   language,
-  magical,
   realm,
   title,
   weapon
@@ -55,13 +51,11 @@ async function updateCharacter(
     name: name,
     race: race,
     image: image,
-    age: age,
     birth: birth,
     culture: culture,
     death: death,
     gender: gender,
     language: language,
-    magical: magical,
     realm: realm,
     title: title,
     weapon: weapon,
