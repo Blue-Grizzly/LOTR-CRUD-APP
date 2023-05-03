@@ -154,10 +154,8 @@ async function updateCharacterClicked(event) {
 
 
 function showDeleteFeedback(message) {
-  const dialog = document.getElementById("dialog-delete-feedback");
-  const dialogMessage = document.getElementById(
-    "dialog-delete-feedback-message"
-  );
+  const dialog = document.querySelector("#dialog-delete-feedback");
+  const dialogMessage = document.querySelector("#dialog-delete-feedback-message");
   dialogMessage.textContent = message;
   dialog.showModal();
   setTimeout(closeDialog, 1000);
