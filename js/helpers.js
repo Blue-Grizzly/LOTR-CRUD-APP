@@ -12,8 +12,6 @@ function searchByName(searchValue) {
 function sortByOption(sortValue) {
   if (sortValue === "name") {
     return characterList.sort((a, b) => a.name.localeCompare(b.name));
-  } else if (sortValue === "age") {
-    return characterList.sort((a, b) => a.age - b.age);
   } else if (sortValue === "title") {
     return characterList.sort((a, b) => a.title.localeCompare(b.title));
   } else if (sortValue === "race") {
