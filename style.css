@@ -106,3 +106,9 @@ input:invalid {
 input:valid {
   border: 2px solid green;
 }
+
+
+.hide {
+  display: none;
+}
+
