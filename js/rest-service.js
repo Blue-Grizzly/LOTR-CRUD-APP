@@ -8,7 +8,7 @@ async function getCharacters() {
   return prepareData(data);
 }
 
-async function createCharacter(name, race, image, birth, culture, death, gender, language, realm, title, weapon) {
+async function createCharacter(name, race, image, birth, culture, death, gender, realm, title, weapon) {
   const newCharacter = {
     name: name,
     race: race,
@@ -17,7 +17,6 @@ async function createCharacter(name, race, image, birth, culture, death, gender,
     culture: culture,
     death: death,
     gender: gender,
-    language: language,
     realm: realm,
     title: title,
     weapon: weapon,
@@ -32,7 +31,7 @@ async function createCharacter(name, race, image, birth, culture, death, gender,
 }
 
 //  Updates an existing character
-async function updateCharacter(id, name, race, image, birth, culture, death, gender, language, realm, title, weapon) {
+async function updateCharacter(id, name, race, image, birth, culture, death, gender, realm, title, weapon) {
   // Character object we update
   const characterToUpdate = {
     name: name,
@@ -42,7 +41,6 @@ async function updateCharacter(id, name, race, image, birth, culture, death, gen
     culture: culture,
     death: death,
     gender: gender,
-    language: language,
     realm: realm,
     title: title,
     weapon: weapon,

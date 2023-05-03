@@ -73,7 +73,6 @@ function updateClicked(characterObject) {
   updateForm.culture.value = characterObject.culture;
   updateForm.death.value = characterObject.death;
   updateForm.gender.value = characterObject.gender;
-  updateForm.language.value = characterObject.language;
   updateForm.realm.value = characterObject.realm;
   updateForm.title.value = characterObject.title;
   updateForm.weapon.value = characterObject.weapon;
@@ -98,11 +97,10 @@ async function createCharacterClicked(event) {
   const culture = form.culture.value;
   const death = form.death.value;
   const gender = form.gender.value;
-  const language = form.language.value;
   const realm = form.realm.value;
   const title = form.title.value;
   const weapon = form.weapon.value;
-  const response = await createCharacter(name, race, image, birth, culture, death, gender, language, realm, title, weapon);
+  const response = await createCharacter(name, race, image, birth, culture, death, gender, realm, title, weapon);
   if (response.ok) {
     document.querySelector("#dialog-create-character").close();
     updateCharactersGrid();
@@ -126,7 +124,6 @@ async function updateCharacterClicked(event) {
   const culture = form.culture.value;
   const death = form.death.value;
   const gender = form.gender.value;
-  const language = form.language.value;
   const realm = form.realm.value;
   const title = form.title.value;
   const weapon = form.weapon.value;
@@ -135,7 +132,7 @@ async function updateCharacterClicked(event) {
 
   //puts in data from from passes it to updateCharacter
 
-  const response = await updateCharacter(id, name, race, image, birth, culture, death, gender, language, realm, title, weapon); //match the parameters in updatepost!!!
+  const response = await updateCharacter(id, name, race, image, birth, culture, death, gender, realm, title, weapon); //match the parameters in updatepost!!!
   if (response.ok) {
     document.querySelector("#dialog-update-character").close();
     updateCharactersGrid();
@@ -250,7 +247,6 @@ function showCharacterModal(characterObject) {
   modal.querySelector("#character-culture").textContent =characterObject.culture;
   modal.querySelector("#character-death").textContent = characterObject.death;
   modal.querySelector("#character-gender").textContent = characterObject.gender;
-  modal.querySelector("#character-language").textContent =characterObject.language;
   modal.querySelector("#character-race").textContent = characterObject.race;
   modal.querySelector("#character-realm").textContent = characterObject.realm;
   modal.querySelector("#character-title").textContent = characterObject.title;
