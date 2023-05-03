@@ -59,37 +59,12 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* Grid layout */
-.grid-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  margin: 20px;
-}
-
-/* Grid sort filter */
-.grid-sort-filter {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-legend {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
 
 #sortbyselect {
   margin-bottom: 10px;
   font-size: 1.2rem;
 }
 
-.grid-characters {
-  margin: 30px auto 0;
-  max-width: 1200px;
-  width: 100%;
-}
 
 h2 {
   font-size: 2rem;
@@ -97,11 +72,6 @@ h2 {
   margin-bottom: 10px;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-}
 
 dialog {
   width: 500px;
