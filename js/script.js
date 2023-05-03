@@ -153,8 +153,22 @@ async function updateCharacterClicked(event) {
   }
 }
 
-async function deleteCharacterClicked(characterObject) {
+function deleteCharacterClicked(characterObject) {
+  console.log(characterObject);
+  document.querySelector("#dialog-delete-character-title").textContent =
+    characterObject.name;
+
+  document.querySelector("#dialog-delete-character").showModal();
+  
+  document
+    .querySelector("#form-delete-character")
+    .addEventListener("submit", ()=>deleteCharacterConfirm(characterObject));
+}
+
+async function deleteCharacterConfirm(characterObject) {
   const response = await deleteCharacter(characterObject);
+
+
   if (response.ok) {
     updateCharactersGrid();
     showDeleteFeedback();
@@ -162,6 +176,7 @@ async function deleteCharacterClicked(characterObject) {
     document.querySelector("#dialog-failed-to-update").showModal();
   }
 }
+
 
 // 4. Som en administrativ bruger vil jeg gerne kunne slette et {item} så det forsvinder fra databasen.
 
@@ -227,17 +242,6 @@ function showCharacter(characterObject) {
   document.querySelector("#characters article:last-child .btn-update").addEventListener("click", () => updateClicked(characterObject));
 }
 
-function deleteCharacterClicked(characterObject) {
-  console.log(characterObject);
-  document.querySelector("#dialog-delete-character-title").textContent =
-    characterObject.name;
-
-  document.querySelector("#dialog-delete-character").showModal();
-  
-  document
-    .querySelector("#form-delete-character")
-    .addEventListener("submit", ()=>deleteCharacterConfirm(characterObject));
-}
 
 function showCharacterModal(characterObject) {
   const modal = document.createElement("dialog");
@@ -263,17 +267,6 @@ function showCharacterModal(characterObject) {
   });
 }
 
-async function deleteCharacterConfirm(characterObject) {
-  const response = await deleteCharacter(characterObject);
-
-
-  if (response.ok) {
-    updateCharactersGrid();
-    showDeleteFeedback();
-  } else {
-    document.querySelector("#dialog-failed-to-update").showModal();
-  }
-}
 
 function showErrorMessage(message) {
   document.querySelector(".error-message").textContent = message;
