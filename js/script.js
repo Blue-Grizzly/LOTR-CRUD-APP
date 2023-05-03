@@ -1,4 +1,9 @@
-import { getCharacters, createCharacter, updateCharacter, deleteCharacter } from "./rest-service.js";
+import {
+  getCharacters,
+  createCharacter,
+  updateCharacter,
+  deleteCharacter,
+} from "./rest-service.js";
 import { filterByRace, sortByOption, searchByName } from "./helpers.js";
 
 let characterList;
@@ -100,7 +105,18 @@ async function createCharacterClicked(event) {
   const realm = form.realm.value;
   const title = form.title.value;
   const weapon = form.weapon.value;
-  const response = await createCharacter(name, race, image, birth, culture, death, gender, realm, title, weapon);
+  const response = await createCharacter(
+    name,
+    race,
+    image,
+    birth,
+    culture,
+    death,
+    gender,
+    realm,
+    title,
+    weapon
+  );
   if (response.ok) {
     document.querySelector("#dialog-create-character").close();
     updateCharactersGrid();
@@ -132,7 +148,19 @@ async function updateCharacterClicked(event) {
 
   //puts in data from from passes it to updateCharacter
 
-  const response = await updateCharacter(id, name, race, image, birth, culture, death, gender, realm, title, weapon); //match the parameters in updatepost!!!
+  const response = await updateCharacter(
+    id,
+    name,
+    race,
+    image,
+    birth,
+    culture,
+    death,
+    gender,
+    realm,
+    title,
+    weapon
+  ); //match the parameters in updatepost!!!
   if (response.ok) {
     document.querySelector("#dialog-update-character").close();
     updateCharactersGrid();
@@ -146,25 +174,27 @@ async function updateCharacterClicked(event) {
 
 function deleteCharacterClicked(characterObject) {
   console.log(characterObject);
-  document.querySelector("#dialog-delete-character-title").textContent = characterObject.name;
+  document.querySelector("#dialog-delete-character-title").textContent =
+    characterObject.name;
 
   document.querySelector("#dialog-delete-character").showModal();
-  
+
   document
     .querySelector("#form-delete-character")
-    .addEventListener("submit", ()=>deleteCharacterConfirm(characterObject));
+    .addEventListener("submit", () => deleteCharacterConfirm(characterObject));
 
-  document.querySelector("#cancelDelete").addEventListener("click", event=>cancelDeleteCharacter(event));
+  document
+    .querySelector("#cancelDelete")
+    .addEventListener("click", (event) => cancelDeleteCharacter(event));
 }
 
-function cancelDeleteCharacter(event){
+function cancelDeleteCharacter(event) {
   event.preventDefault();
   document.querySelector("#dialog-delete-character").close();
 }
 
 async function deleteCharacterConfirm(characterObject) {
   const response = await deleteCharacter(characterObject);
-
 
   if (response.ok) {
     updateCharactersGrid();
@@ -173,7 +203,6 @@ async function deleteCharacterConfirm(characterObject) {
     document.querySelector("#dialog-failed-to-update").showModal();
   }
 }
-
 
 // 4. Som en administrativ bruger vil jeg gerne kunne slette et {item} så det forsvinder fra databasen.
 
@@ -220,6 +249,7 @@ function showCharacter(characterObject) {
             <h3>Name: ${characterObject.name}</h3>
             <p>Weapon: ${characterObject.weapon}</p>
             <p>Race: ${characterObject.race}</p>
+            <p>Title: ${characterObject.title}</p>
         </div>
             <div class="btns">
                 <button class="btn-delete">Delete</button>
@@ -229,14 +259,20 @@ function showCharacter(characterObject) {
     `;
   document.querySelector("#characters").insertAdjacentHTML("beforeend", html);
 
-  const gridItem = document.querySelector("#characters article:last-child .clickable");
+  const gridItem = document.querySelector(
+    "#characters article:last-child .clickable"
+  );
 
   gridItem.addEventListener("click", () => {
     showCharacterModal(characterObject);
   });
 
-  document.querySelector("#characters article:last-child .btn-delete").addEventListener("click", () => deleteCharacterClicked(characterObject));
-  document.querySelector("#characters article:last-child .btn-update").addEventListener("click", () => updateClicked(characterObject));
+  document
+    .querySelector("#characters article:last-child .btn-delete")
+    .addEventListener("click", () => deleteCharacterClicked(characterObject));
+  document
+    .querySelector("#characters article:last-child .btn-update")
+    .addEventListener("click", () => updateClicked(characterObject));
 }
 
 function showCharacterModal(characterObject) {
@@ -244,7 +280,8 @@ function showCharacterModal(characterObject) {
   modal.querySelector("#character-image").src = characterObject.image;
   modal.querySelector("#character-name").textContent = characterObject.name;
   modal.querySelector("#character-birth").textContent = characterObject.birth;
-  modal.querySelector("#character-culture").textContent =characterObject.culture;
+  modal.querySelector("#character-culture").textContent =
+    characterObject.culture;
   modal.querySelector("#character-death").textContent = characterObject.death;
   modal.querySelector("#character-gender").textContent = characterObject.gender;
   modal.querySelector("#character-race").textContent = characterObject.race;
@@ -256,9 +293,6 @@ function showCharacterModal(characterObject) {
     modal.close();
   });
 }
-
-
-
 
 function showErrorMessage(message) {
   document.querySelector(".error-message").textContent = message;
