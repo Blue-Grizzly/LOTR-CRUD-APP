@@ -7,21 +7,45 @@ window.addEventListener("load", initApp);
 
 function initApp() {
   updateCharactersGrid();
-  document.querySelector("#btn-create-character").addEventListener("click", showCreateCharacterDialog);
-  document.querySelector("#form-create-character").addEventListener("submit", createCharacterClicked);
-  document.querySelector("#form-update-character .btn-cancel").addEventListener("click", cancelUpdate);
-  document.querySelector("#form-create-character .btn-cancel").addEventListener("click", cancelCreate);
-  document.querySelector("#form-update-character").addEventListener("submit", updateCharacterClicked);
-  document.querySelector("#sortbyselect").addEventListener("change", event => showCharacters(sortByOption(event.target.value)));
-  document.querySelector("#input-search").addEventListener("keyup", event => showCharacters(searchByName(event.target.value)));
-  document.querySelector("#input-search").addEventListener("search", event => showCharacters(searchByName(event.target.value)));
-  document.querySelector("#filterby").addEventListener("change", event => showCharacters(filterByRace(event.target.value)));
-}
+  document
+    .querySelector("#btn-create-character")
+    .addEventListener("click", showCreateCharacterDialog);
+  document
+    .querySelector("#form-create-character")
+    .addEventListener("submit", createCharacterClicked);
 
-function closeCreateCharacterModal(event) {
-  event.preventDefault();
-  console.log("Cancel Create Character clicked!");
-  document.querySelector("#dialog-create-character").close();
+  document
+    .querySelector("#form-update-character .btn-cancel")
+    .addEventListener("click", cancelUpdate);
+
+  document
+    .querySelector("#form-create-character .btn-cancel")
+    .addEventListener("click", cancelCreate);
+
+  document
+    .querySelector("#form-update-character")
+    .addEventListener("submit", updateCharacterClicked);
+
+  document
+    .querySelector("#sortbyselect")
+    .addEventListener("change", (event) =>
+      showCharacters(sortByOption(event.target.value))
+    );
+  document
+    .querySelector("#input-search")
+    .addEventListener("keyup", (event) =>
+      showCharacters(searchByName(event.target.value))
+    );
+  document
+    .querySelector("#input-search")
+    .addEventListener("search", (event) =>
+      showCharacters(searchByName(event.target.value))
+    );
+  document
+    .querySelector("#filterby")
+    .addEventListener("change", (event) =>
+      showCharacters(filterByRace(event.target.value))
+    );
 }
 
 function cancelCreate(event) {
@@ -146,7 +170,9 @@ async function deleteCharacterClicked(characterObject) {
 
 function showDeleteFeedback() {
   const dialog = document.getElementById("dialog-delete-feedback");
-  const dialogMessage = document.getElementById("dialog-delete-feedback-message");
+  const dialogMessage = document.getElementById(
+    "dialog-delete-feedback-message"
+  );
   dialogMessage.textContent;
   dialog.showModal();
   setTimeout(closeDialog, 1000);
@@ -199,6 +225,21 @@ function showCharacter(characterObject) {
 
   document.querySelector("#characters article:last-child .btn-delete").addEventListener("click", () => deleteCharacterClicked(characterObject));
   document.querySelector("#characters article:last-child .btn-update").addEventListener("click", () => updateClicked(characterObject));
+}
+
+function deleteCharacterClicked(characterObject) {
+  document.querySelector("#dialog-delete-character-title").textContent =
+    characterObject.title;
+
+  document
+    .querySelector("#form-delete-character")
+    .setAttribute("data-id", characterObject.id);
+
+  document.querySelector("#dialog-delete-character").showModal();
+  
+  document
+    .querySelector("#form-delete-character")
+    .addEventListener("submit", deleteCharacterConfirm);
 }
 
 function showCharacterModal(characterObject) {
