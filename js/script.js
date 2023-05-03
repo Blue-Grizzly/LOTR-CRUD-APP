@@ -57,7 +57,7 @@ function initApp() {
 
 function cancelUpdate(event) {
   event.preventDefault();
-  console.log("Cancel button clicked!");
+  console.log("Cancel update button clicked!");
   document.querySelector("#dialog-update-character").close();
 }
 
@@ -139,6 +139,7 @@ async function updateCharacterClicked(event) {
   if (response.ok) {
     document.querySelector("#dialog-update-character").close();
     updateCharactersGrid();
+    console.log("Update Character button clicked!");
   } else {
     console.log(response.status, response.statusText);
     showErrorMessage("Something went wrong. Please, try again!");
@@ -153,9 +154,7 @@ async function updateCharacterClicked(event) {
 
 function showDeleteFeedback() {
   const dialog = document.getElementById("dialog-delete-feedback");
-  const dialogMessage = document.getElementById(
-    "dialog-delete-feedback-message"
-  );
+  const dialogMessage = document.getElementById("dialog-delete-feedback-message");
   dialogMessage.textContent;
   dialog.showModal();
   setTimeout(closeDialog, 1000);
@@ -167,7 +166,7 @@ function showDeleteFeedback() {
 
 function showCreateCharacterDialog() {
   document.querySelector("#dialog-create-character").showModal();
-  console.log("Create New Character clicked!");
+  console.log("Create New Character button clicked!");
 }
 
 async function createCharacterClicked(event) {
