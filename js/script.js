@@ -129,6 +129,16 @@ async function updateCharacterClicked(event) {
   }
 }
 
+async function deleteCharacterClicked(characterObject) {
+  const response = await deleteCharacter(characterObject);
+  if (response.ok) {
+    updateCharactersGrid();
+    showDeleteFeedback();
+  } else {
+    document.querySelector("#dialog-failed-to-update").showModal();
+  }
+}
+
 // 4. Som en administrativ bruger vil jeg gerne kunne slette et {item} så det forsvinder fra databasen.
 
 // 5. Som en daglig bruger vil jeg gerne have tydelig feedback på når jeg sletter et {item},
@@ -213,16 +223,6 @@ function showCharacterModal(characterObject) {
   modal.addEventListener("click", () => {
     modal.remove();
   });
-}
-
-async function deleteCharacterClicked(characterObject) {
-  const response = await deleteCharacter(characterObject);
-  if (response.ok) {
-    updateCharactersGrid();
-    showDeleteFeedback();
-  } else {
-    document.querySelector("#dialog-failed-to-update").showModal();
-  }
 }
 
 function showErrorMessage(message) {
