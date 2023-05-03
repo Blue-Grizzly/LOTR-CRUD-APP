@@ -48,16 +48,15 @@ function initApp() {
     );
 }
 
+function cancelCreate(event) {
+  event.preventDefault();
+  document.querySelector("#dialog-create-character").close();
+}
+
 function cancelUpdate(event) {
   event.preventDefault();
   console.log("Cancel update button clicked!");
   document.querySelector("#dialog-update-character").close();
-}
-
-function cancelCreate(event) {
-  event.preventDefault();
-  document.querySelector("#dialog-create-character").close();
-  document.querySelector("#form-create-character").reset();
 }
 
 function updateClicked(characterObject) {
@@ -151,6 +150,16 @@ async function updateCharacterClicked(event) {
     console.log(response.status, response.statusText);
     showErrorMessage("Something went wrong. Please, try again!");
     event.target.parentNode.close();
+  }
+}
+
+async function deleteCharacterClicked(characterObject) {
+  const response = await deleteCharacter(characterObject);
+  if (response.ok) {
+    updateCharactersGrid();
+    showDeleteFeedback();
+  } else {
+    document.querySelector("#dialog-failed-to-update").showModal();
   }
 }
 
@@ -255,23 +264,6 @@ function showCharacterModal(characterObject) {
   modal.addEventListener("click", () => {
     modal.remove();
   });
-}
-
-async function deleteCharacterConfirm() {
-  const id = document
-    .querySelector("#form-delete-character")
-    .getAttribute("data-id");
-
-
-  const response = await deleteCharacter(id);
-
-
-  if (response.ok) {
-    updateCharactersGrid();
-    showDeleteFeedback();
-  } else {
-    document.querySelector("#dialog-failed-to-update").showModal();
-  }
 }
 
 function showErrorMessage(message) {
