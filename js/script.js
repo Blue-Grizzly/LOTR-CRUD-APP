@@ -220,6 +220,7 @@ async function updateCharactersGrid() {
 
 function showCharacters(characterList) {
   document.querySelector("#characters").innerHTML = "";
+  console.log(characterList);
 
   for (const character of characterList) {
     showCharacter(character);
@@ -317,6 +318,6 @@ function filterByRace(inputValue) {
   return characterList.filter((character) =>
     character.race.toLowerCase().includes(inputValue)
   );} else{
-    updateCharactersGrid();
+    return characterList;
   }
 }
