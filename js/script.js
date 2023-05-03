@@ -1,4 +1,9 @@
-import { getCharacters, createCharacter, updateCharacter, deleteCharacter } from "./rest-service.js";
+import {
+  getCharacters,
+  createCharacter,
+  updateCharacter,
+  deleteCharacter,
+} from "./rest-service.js";
 import { filterByRace, sortByOption, searchByName } from "./helpers.js";
 
 let characterList;
@@ -18,13 +23,11 @@ function initApp() {
     .querySelector("#form-update-character .btn-cancel")
     .addEventListener("click", cancelUpdate);
 
-document
-  .querySelector("#form-create-character .btn-cancel")
-  .addEventListener("click", cancelCreate);
-
   document
     .querySelector("#form-create-character .btn-cancel")
-    .addEventListener("click", closeCreateCharacterModal);
+    .addEventListener("click", cancelCreate);
+
+  
   document
     .querySelector("#form-update-character")
     .addEventListener("submit", updateCharacterClicked);
@@ -51,11 +54,6 @@ document
     );
 }
 
-function closeCreateCharacterModal(event) {
-  event.preventDefault();
-  console.log("Cancel Create Character clicked!");
-  document.querySelector("#dialog-create-character").close();
-}
 
 function cancelUpdate(event) {
   event.preventDefault();
@@ -63,9 +61,10 @@ function cancelUpdate(event) {
   document.querySelector("#dialog-update-character").close();
 }
 
-function cancelCreate(event){
+function cancelCreate(event) {
   event.preventDefault();
   document.querySelector("#dialog-create-character").close();
+   document.querySelector("#form-create-character").reset();
 }
 
 function updateClicked(characterObject) {
@@ -304,4 +303,4 @@ function hideErrorMessage() {
   document.querySelector(".error-message").classList.add("hide");
 }
 
-export {characterList};
+export { characterList };
