@@ -1,5 +1,6 @@
 :root {
   --text-color-dark: red;
+  font-size: 62.5%;
 }
 
 body {
@@ -32,6 +33,17 @@ p {
 .grid-item {
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
   padding: 1.5em;
+}
+
+
+/* setting size of images and centers them */
+.grid-item .clickable img{
+  width: 20rem;
+  height:10rem;
+  object-fit: cover;
+  margin-left: auto;
+  margin-right: auto;
+  display:block;
 }
 
 .grid-layout {
