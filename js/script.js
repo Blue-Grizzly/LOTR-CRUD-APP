@@ -24,10 +24,6 @@ function closeCreateCharacterModal(event) {
   document.querySelector("#dialog-create-character").close();
 }
 
-function cancelCreate(event) {
-  event.preventDefault();
-  document.querySelector("#dialog-create-character").close();
-}
 
 function cancelUpdate(event) {
   event.preventDefault();
