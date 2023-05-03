@@ -1,5 +1,4 @@
 
-
 function prepareData(dataObject) {
   const characterArray = [];
   for (const key in dataObject) {

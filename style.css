@@ -67,3 +67,12 @@ p {
   width: 15vw;
   }
 }
+
+.error-message {
+    background-color: rgb(255, 121, 121);
+    color: var(--text-color-dark);
+    margin: 1em auto;
+    width: 100%;
+    max-width: 342px;
+    padding: 1em;
+}

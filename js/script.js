@@ -207,8 +207,10 @@ async function createCharacterClicked(event) {
     document.querySelector("#dialog-create-character").close();
     updateCharactersGrid();
     form.reset();
+    hideErrorMessage();
   } else {
     document.querySelector("#dialog-failed-to-update").showModal();
+    showErrorMessage("Something went wrong. Please, try again!");
   }
 }
 
@@ -280,7 +282,6 @@ function showCharacterModal(characterObject) {
 }
 
 
-
 async function deleteCharacterClicked(characterObject) {
   const response = await deleteCharacter(characterObject);
     if (response.ok) {
@@ -319,4 +320,14 @@ function filterByRace(inputValue) {
   );} else{
     updateCharactersGrid();
   }
+}
+
+function showErrorMessage(message) {
+  document.querySelector(".error-message").textContent = message;
+  document.querySelector(".error-message").classList.remove("hide");
+}
+
+function hideErrorMessage() {
+  document.querySelector(".error-message").textContent = "";
+  document.querySelector(".error-message").classList.add("hide");
 }
