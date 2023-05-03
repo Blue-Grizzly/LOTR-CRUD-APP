@@ -246,13 +246,11 @@ function showCharacterModal(characterObject) {
   const modal = document.querySelector("#character-modal");
   modal.querySelector("#character-image").src = characterObject.image;
   modal.querySelector("#character-name").textContent = characterObject.name;
-  modal.querySelector("#character-age").textContent = characterObject.age;
   modal.querySelector("#character-birth").textContent = characterObject.birth;
   modal.querySelector("#character-culture").textContent =characterObject.culture;
   modal.querySelector("#character-death").textContent = characterObject.death;
   modal.querySelector("#character-gender").textContent = characterObject.gender;
   modal.querySelector("#character-language").textContent =characterObject.language;
-  modal.querySelector("#character-magical").textContent =characterObject.magical;
   modal.querySelector("#character-race").textContent = characterObject.race;
   modal.querySelector("#character-realm").textContent = characterObject.realm;
   modal.querySelector("#character-title").textContent = characterObject.title;

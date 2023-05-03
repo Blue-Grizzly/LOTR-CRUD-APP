@@ -32,20 +32,7 @@ async function createCharacter(name, race, image, birth, culture, death, gender,
 }
 
 //  Updates an existing character
-async function updateCharacter(
-  id,
-  name,
-  race,
-  image,
-  birth,
-  culture,
-  death,
-  gender,
-  language,
-  realm,
-  title,
-  weapon
-) {
+async function updateCharacter(id, name, race, image, birth, culture, death, gender, language, realm, title, weapon) {
   // Character object we update
   const characterToUpdate = {
     name: name,
