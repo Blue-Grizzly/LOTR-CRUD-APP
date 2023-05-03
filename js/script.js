@@ -155,8 +155,7 @@ async function updateCharacterClicked(event) {
 
 function deleteCharacterClicked(characterObject) {
   console.log(characterObject);
-  document.querySelector("#dialog-delete-character-title").textContent =
-    characterObject.name;
+  document.querySelector("#dialog-delete-character-title").textContent = characterObject.name;
 
   document.querySelector("#dialog-delete-character").showModal();
   
@@ -228,7 +227,7 @@ function showCharacter(characterObject) {
         <div class="clickable">    
             <img src="${characterObject.image}" />
             <h3>Name: ${characterObject.name}</h3>
-            <p>Age: ${characterObject.age}</p>
+            <p>Weapon: ${characterObject.weapon}</p>
             <p>Race: ${characterObject.race}</p>
         </div>
             <div class="btns">
