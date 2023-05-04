@@ -22,11 +22,17 @@ function sortByOption(sortValue) {
 function filterByRace(inputValue) {
   inputValue = inputValue.toLowerCase();
   if(inputValue !== "filterall"){
-  return characterList.filter((character) =>
-    character.race.toLowerCase().includes(inputValue)
-  );} else{
+  let filteredList = characterList.filter((character) =>
+    character.race.toLowerCase().includes(inputValue));
+    if(filteredList.length !== 0){
+      return filteredList
+    } else{
+      return filteredList=[];
+    }
+  } else{
     return characterList;
   }
+
 }
 
 function prepareData(dataObject) {

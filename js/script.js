@@ -235,9 +235,16 @@ async function updateCharactersGrid() {
 
 function showCharacters(characterList) {
   document.querySelector("#characters").innerHTML = "";
+  if(characterList.length !== 0){
 
-  for (const character of characterList) {
-    showCharacter(character);
+    for (const character of characterList) {
+      showCharacter(character);
+    }
+  } else{
+    document.querySelector("#characters").insertAdjacentHTML("beforeend", /*html*/`
+    <h2> No characters were found. Please try again.</h2>
+    `);
+
   }
 }
 

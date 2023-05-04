@@ -146,20 +146,7 @@ h3 {
   letter-spacing: 0.1px;
 }
 
-/* ---------- header styling ---------- */
-
-
-/* ---------- footer styling ---------- */
-
-footer {
-  padding: 1em;
-  text-align: center;
-}
-
-/* ---------- grid container styling ---------- */
 .grid-container {
-  justify-content: center;
-  align-content: center;
   display: grid;
   grid-template-columns: 1fr;
   gap: 1em;
@@ -202,6 +189,7 @@ footer {
   margin: auto;
   background-color: white;
 }
+
 
 .grid-item:hover {
   box-shadow: 0 8px 16px 0 black;
