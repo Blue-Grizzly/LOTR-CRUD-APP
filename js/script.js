@@ -242,7 +242,7 @@ function showCharacters(characterList) {
     }
   } else{
     document.querySelector("#characters").insertAdjacentHTML("beforeend", /*html*/`
-    <h2> No characters were found. Please try again.</h2>
+    <h2 id="search-error-msg"> No characters were found. Please try again.</h2>
     `);
 
   }

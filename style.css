@@ -6,22 +6,23 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: Lucida Handwriting, cursive;
   line-height: 1.6;
-  background-color: rgba(189, 184, 184, 0.5);
+  /* background-color: rgba(189, 184, 184, 0.5); */
+  background-image: url(https://p1.pxfuel.com/preview/467/227/718/middle-earth-lord-of-the-rings-gondor-map.jpg);
+  background-size: cover;
+  color: #fbc841;
 }
 
 /* Header */
 
 header {
-  background-color: #97ac67;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: #A0522D;
+  color: #fbc841;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   max-height: 10vh;
   padding: 1em;
-  text-align: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -29,24 +30,28 @@ header {
   z-index: 9;
 }
 
-h1 {
-  font-size: 2.5rem;
-  font-family: "Times New Roman", Times, serif;
-  margin-bottom: 20px;
+
+
+#search-error-msg{
+  background-color: #00000085;
+    text-align: center;
 }
 
+
 #input-search {
-  margin-left: 20vw;
+  margin-top: -4rem;
+  margin-left: 15rem;
   border: none;
   border-bottom: 2px solid #333;
   font-size: 1.2rem;
 }
 
 #btn-create-character {
-  margin-left: 29vw;
-  padding: 10px 20px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 5vh;
   background-color: #bdd076;
-  color: #fff;
+  color: black;
   border: none;
   cursor: pointer;
   font-size: 1.2rem;
@@ -54,22 +59,18 @@ h1 {
   transition: background-color 0.3s;
 }
 
-h1 {
-  font-size: 2.5rem;
-  font-family: "Times New Roman", Times, serif;
-  margin-bottom: 20px;
-}
-
 h2 {
-  font-size: 2rem;
-  margin: 0;
+  font-size: 3rem;
+  margin: auto;
+  text-align: center;
   margin-bottom: 10px;
 }
 
 dialog {
+  color: #fbc841;
   border: none;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: #000000;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -129,21 +130,14 @@ body {
   font-size: 1.2em;
 }
 
-h1 {
-  font-size: 2em;
-  font-weight: 500;
-  letter-spacing: 0.1px;
-}
-
-h2 {
-  font-weight: 500;
-  letter-spacing: 0.1px;
-  text-align: center;
-}
 
 h3 {
-  font-weight: 500;
+  font-size: 2rem;
   letter-spacing: 0.1px;
+}
+
+p{
+  font-size: 1.5rem;
 }
 
 .grid-container {
@@ -185,9 +179,9 @@ h3 {
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
   padding: 1.5em;
   position: relative;
-  height: 55vh;
+  height: 60vh;
   margin: auto;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 
@@ -324,7 +318,7 @@ dialog p {
   gap: 1em;
   justify-content: start;
   justify-items: stretch;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.6);
 
 }
 
