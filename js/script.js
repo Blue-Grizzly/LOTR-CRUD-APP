@@ -174,18 +174,10 @@ async function updateCharacterClicked(event) {
 
 function deleteCharacterClicked(characterObject) {
   console.log(characterObject);
-  document.querySelector("#dialog-delete-character-title").textContent =
-    characterObject.name;
-
+  document.querySelector("#dialog-delete-character-title").textContent = characterObject.name;
   document.querySelector("#dialog-delete-character").showModal();
-
-  document
-    .querySelector("#form-delete-character")
-    .addEventListener("submit", () => deleteCharacterConfirm(characterObject));
-
-  document
-    .querySelector("#cancelDelete")
-    .addEventListener("click", (event) => cancelDeleteCharacter(event));
+  document.querySelector("#form-delete-character").addEventListener("submit", () => deleteCharacterConfirm(characterObject));
+  document.querySelector("#cancelDelete").addEventListener("click", (event) => cancelDeleteCharacter(event));
 }
 
 function cancelDeleteCharacter(event) {
