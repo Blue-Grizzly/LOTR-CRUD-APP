@@ -26,13 +26,12 @@ function filterByRace(inputValue) {
     character.race.toLowerCase().includes(inputValue));
     if(filteredList.length !== 0){
       return filteredList
-    } else{
+    } else {
       return filteredList=[];
     }
-  } else{
+  } else {
     return characterList;
   }
-
 }
 
 function prepareData(dataObject) {

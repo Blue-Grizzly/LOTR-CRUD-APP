@@ -30,13 +30,10 @@ header {
   z-index: 9;
 }
 
-
-
 #search-error-msg{
   background-color: #00000085;
-    text-align: center;
+  text-align: center;
 }
-
 
 #input-search {
   margin-top: -4rem;
@@ -91,6 +88,7 @@ dialog {
     width: 20vw;
   }
 }
+
 @media (min-width: 1200px) {
   .grid-container {
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -136,7 +134,7 @@ h3 {
   letter-spacing: 0.1px;
 }
 
-p{
+p {
   font-size: 1.5rem;
 }
 
@@ -244,10 +242,9 @@ button {
   background-color: #bdd076;
 }
 
-.btn-delete, .btn-cancel{
+.btn-delete, .btn-cancel {
   background-color: rgb(245, 123, 123);
 }
-
 
 header button {
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
@@ -289,9 +286,11 @@ dialog::backdrop {
 dialog h3 {
   text-align: center;
 }
+
 dialog h4 {
   margin-bottom: 0;
 }
+
 dialog ul {
   margin: 0.5em 0 1em;
   padding-inline-start: 1.5em;
@@ -319,10 +318,7 @@ dialog p {
   justify-content: start;
   justify-items: stretch;
   background-color: rgba(0, 0, 0, 0.6);
-
 }
-
-
 
 @media (min-width: 600px) {
   .tools-grid {
