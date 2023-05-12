@@ -174,18 +174,10 @@ async function updateCharacterClicked(event) {
 
 function deleteCharacterClicked(characterObject) {
   console.log(characterObject);
-  document.querySelector("#dialog-delete-character-title").textContent =
-    characterObject.name;
-
+  document.querySelector("#dialog-delete-character-title").textContent = characterObject.name;
   document.querySelector("#dialog-delete-character").showModal();
-
-  document
-    .querySelector("#form-delete-character")
-    .addEventListener("submit", () => deleteCharacterConfirm(characterObject));
-
-  document
-    .querySelector("#cancelDelete")
-    .addEventListener("click", (event) => cancelDeleteCharacter(event));
+  document.querySelector("#form-delete-character").addEventListener("submit", () => deleteCharacterConfirm(characterObject));
+  document.querySelector("#cancelDelete").addEventListener("click", (event) => cancelDeleteCharacter(event));
 }
 
 function cancelDeleteCharacter(event) {
@@ -237,11 +229,10 @@ function showCharacters(characterList) {
     for (const character of characterList) {
       showCharacter(character);
     }
-  } else{
+  } else {
     document.querySelector("#characters").insertAdjacentHTML("beforeend", /*html*/`
     <h2 id="search-error-msg"> No characters were found. Please try again.</h2>
     `);
-
   }
 }
 
@@ -284,8 +275,7 @@ function showCharacterModal(characterObject) {
   modal.querySelector("#character-image").src = characterObject.image;
   modal.querySelector("#character-name").textContent = characterObject.name;
   modal.querySelector("#character-birth").textContent = characterObject.birth;
-  modal.querySelector("#character-culture").textContent =
-    characterObject.culture;
+  modal.querySelector("#character-culture").textContent = characterObject.culture;
   modal.querySelector("#character-death").textContent = characterObject.death;
   modal.querySelector("#character-gender").textContent = characterObject.gender;
   modal.querySelector("#character-race").textContent = characterObject.race;
@@ -294,7 +284,7 @@ function showCharacterModal(characterObject) {
   modal.querySelector("#character-weapon").textContent = characterObject.weapon;
   modal.showModal();
   modal.querySelector("button").addEventListener("click", () => {
-    modal.close();
+  modal.close();
   });
 }
 
