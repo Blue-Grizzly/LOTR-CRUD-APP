@@ -93,6 +93,7 @@ function updateClicked(characterObject) {
 // }
 
 async function createCharacterClicked(event) {
+
   event.preventDefault();
   const form = document.querySelector("#form-create-character");
   const name = form.name.value;
@@ -105,6 +106,7 @@ async function createCharacterClicked(event) {
   const realm = form.realm.value;
   const title = form.title.value;
   const weapon = form.weapon.value;
+
   const response = await createCharacter(
     name,
     race,
@@ -125,7 +127,7 @@ async function createCharacterClicked(event) {
     // event.target.parentNode.close();
   } else {
     console.log(response.status, response.statusText);
-    showErrorMessage("Something went wrong. Please, try again!");
+    showErrorMessage("Something went wrong. Please try again");
   }
 }
 
@@ -167,7 +169,7 @@ async function updateCharacterClicked(event) {
     console.log("Update Character button clicked!");
   } else {
     console.log(response.status, response.statusText);
-    showErrorMessage("Something went wrong. Please, try again!");
+    showErrorMessage("Something went wrong. Please try again");
     event.target.parentNode.close();
   }
 }
