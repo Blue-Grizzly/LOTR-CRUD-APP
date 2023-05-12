@@ -204,10 +204,7 @@ async function deleteCharacterConfirm(characterObject) {
   }
 }
 
-// 4. Som en administrativ bruger vil jeg gerne kunne slette et {item} så det forsvinder fra databasen.
 
-// 5. Som en daglig bruger vil jeg gerne have tydelig feedback på når jeg sletter et {item},
-//  så jeg ved at jeg har fjernet noget fra listen.
 
 function showDeleteFeedback() {
   const dialog = document.getElementById("dialog-delete-feedback");
